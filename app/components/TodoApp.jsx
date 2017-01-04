@@ -1,5 +1,5 @@
 var React = require('react');
-var uuid = require('uuid');
+//var uuid = require('uuid');
 var moment = require('moment');
 
 import TodoList from 'TodoList';
