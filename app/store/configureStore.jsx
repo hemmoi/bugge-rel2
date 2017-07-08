@@ -1,14 +1,12 @@
 import * as redux from 'redux';
 import thunk from 'redux-thunk';
 
-import {searchTextReducer, showCompletedReducer, todosReducer, loginReducer, authReducer} from 'reducers';
+import {exampleOneReducer, exampleTwoReducer} from 'reducers';
 
 export var configure = (initialState = {}) => {
   var reducer = redux.combineReducers({
-    searchText: searchTextReducer,
-    showCompleted: showCompletedReducer,
-    todos: todosReducer,
-    auth: authReducer
+    exampleOne: exampleOneReducer,
+    exampleTwo: exampleTwoReducer,
   });
 
   var store = redux.createStore(reducer, initialState, redux.compose(
