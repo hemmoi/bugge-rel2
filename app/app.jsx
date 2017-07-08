@@ -8,8 +8,10 @@ var store = require('configureStore').configure();
 import router from 'app/router';
 
 
+
 // App css
 require('style!css!sass!applicationStyles')
+
 
 ReactDOM.render(
   <Provider store={store}>
