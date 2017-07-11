@@ -7,39 +7,39 @@ export class ErrorListing extends React.Component {
 
   constructor (props) {
     super(props);
-        this.state = {
-            errors: [
-                    {
-                        id: 1,
-                        title: "Error one",
-                        description: "some description",
-                        steps: "steps to reproduce",
-                        comments: "some comments",
-                        status: "New"
-                    },
-                    {
-                        id: 2,
-                        title: "Error two",
-                        description: "some description",
-                        steps: "steps to reproduce",
-                        comments: "some comments",
-                        status: "New"
-                    },
-                    {
-                        id: 3,
-                        title: "Error three",
-                        description: "some description",
-                        steps: "steps to reproduce",
-                        comments: "some comments",
-                        status: "New"
-                    }
-                    ]
-        };
+        // this.state = {
+        //     errors: [
+        //             {
+        //                 id: 1,
+        //                 title: "Error one",
+        //                 description: "some description",
+        //                 steps: "steps to reproduce",
+        //                 comments: "some comments",
+        //                 status: "New"
+        //             },
+        //             {
+        //                 id: 2,
+        //                 title: "Error two",
+        //                 description: "some description",
+        //                 steps: "steps to reproduce",
+        //                 comments: "some comments",
+        //                 status: "New"
+        //             },
+        //             {
+        //                 id: 3,
+        //                 title: "Error three",
+        //                 description: "some description",
+        //                 steps: "steps to reproduce",
+        //                 comments: "some comments",
+        //                 status: "New"
+        //             }
+        //             ]
+        // };
   }
 
 
   render() {
-    var {errors} = this.state;
+    var {errors} = this.props;
     var renderErrors = () => {
         return  errors.map((error) => {
             return (
@@ -62,6 +62,8 @@ export class ErrorListing extends React.Component {
 
 export default connect(
   (state) => {
-    return state;
+    return {
+        errors: state.errors
+    };
   }
 )(ErrorListing);

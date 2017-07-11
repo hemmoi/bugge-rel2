@@ -1,16 +1,15 @@
 import * as redux from 'redux';
 import thunk from 'redux-thunk';
 
-import {exampleOneReducer, exampleTwoReducer} from 'reducers';
+import {errorsReducer} from 'reducers';
 
 export var configure = (initialState = {}) => {
   var reducer = redux.combineReducers({
-    exampleOne: exampleOneReducer,
-    exampleTwo: exampleTwoReducer,
+    errors: errorsReducer
   });
 
-  var store = redux.createStore(reducer, initialState, redux.compose(
-    redux.applyMiddleware(thunk),
+  var store = redux.createStore(reducer, redux.compose(
+    // redux.applyMiddleware(thunk),
     window.devToolsExtension ? window.devToolsExtension() : f=>f
   ));
 

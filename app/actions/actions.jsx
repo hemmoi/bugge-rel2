@@ -1,9 +1,13 @@
 import moment from 'moment';
 
-// export var setSearchText = (searchText) => {
-//   return {
-//     type: 'SET_SEARCH_TEXT',
-//     searchText
-//   };
-// };
+export var addError = (title, description, steps, comments, status) => {
+  return {
+    type: 'ADD_ERROR',
+    title,
+    description,
+    steps,
+    comments,
+    status
+  };
+};
 
