@@ -10,14 +10,15 @@ export class Main extends React.Component {
     super(props);
   }
 
+
   render () {
+    
     return (
       <div>
         <div>
           <Navbar/>
-          <h1>Main Page</h1>
-          <div className="row">
-            <div className="columns medium-6 large-4 small-centered">
+          <div>
+            <div>
               {this.props.children}
             </div>
           </div>

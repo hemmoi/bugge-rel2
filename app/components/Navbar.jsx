@@ -7,7 +7,10 @@ export class Navbar extends React.Component {
 
   render () {
     return (
-        <div>Navbar</div>
+      <div id="title">
+        <img id="logo" src="logo.jpg"></img>
+        <h1>Bugge</h1>
+      </div>
     );
   }
 
