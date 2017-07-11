@@ -1,15 +1,30 @@
 var React = require('react');
 var {connect} = require('react-redux');
+var actions = require('actions');
 
 export class ErrorDetails extends React.Component {
+
+    handleSubmit(e) {
+        e.preventDefault();
+        var {dispatch} = this.props;
+        var errorTitle = this.refs.errorTitle.value;
+        var errorDescription = this.refs.errorDescription.value;
+        var errorSteps = this.refs.errorSteps.value;
+        var errorComment = this.refs.errorComment.value;
+        var errorStatus = this.refs.errorStatus.value;
+
+        console.log(errorTitle, errorDescription, errorSteps, errorComment, errorStatus);
+
+        dispatch(actions.addError(errorTitle, errorDescription, errorSteps, errorComment, errorStatus));
+    }
 
   render() {
 
     return (
-      <div id="error-template">
+      <form onSubmit={this.handleSubmit.bind(this)} id="error-template">
           <div className="input-group input-group-lg form-buttons">
-              <button className="btn btn-success form-button">Save changes</button>
-              <button className="btn btn-danger form-button">Close</button>
+              <button type="submit" className="btn btn-success form-button">Save changes</button>
+              <a href="#" className="btn btn-danger form-button">Close</a>
           </div>
 
           <div id="error-form">
@@ -19,14 +34,14 @@ export class ErrorDetails extends React.Component {
                       <div className="card card-inverse card-primary form-group-row">
                           <div className="card-header">Title</div>
                           <div className="card-text">
-                              <input type="text" name="header" className="form-input" maxlength="60" required></input>
+                              <input ref="errorTitle" type="text" name="header" className="form-input" maxLength="60" required></input>
                           </div>
                       </div>
 
                       <div className="card card-inverse card-primary form-group-row">
                           <div className="card-header">Description</div>
                           <div className="card-text">
-                              <textarea name="description" rows="5" className="form-input">Short description of the issue.
+                              <textarea ref="errorDescription" name="description" rows="5" className="form-input">
                               </textarea>
                           </div>
                       </div>
@@ -34,12 +49,7 @@ export class ErrorDetails extends React.Component {
                       <div className="card card-inverse card-primary form-group-row">
                           <div className="card-header">Steps to reproduce</div>
                           <div className="card-text">
-                              <textarea name="description" rows="20" className="form-input">
-              - Steps to Reproduce: Minimized, easy-to-follow steps that will trigger the described problem. Include any special setup steps.
-
-              - Actual Results: What the application did after performing the above steps.
-
-              - Expected Results: What the application should have done, if there was no bug.
+                              <textarea ref="errorSteps" name="description" rows="20" className="form-input">
 
                               </textarea>
                           </div>
@@ -48,20 +58,20 @@ export class ErrorDetails extends React.Component {
                       <div className="card card-inverse card-primary form-group-row">
                           <div className="card-header">Comment</div>
                           <div className="card-text">
-                              <textarea name="description" rows="10" className="form-input">
+                              <textarea ref="errorComment" name="description" rows="10" className="form-input">
                               </textarea>              
                               <div>
-                                  <button className="btn btn-warning">Add comment</button>
+                                  {/*<button className="btn btn-warning">Add comment</button>*/}
                               </div>
                           </div>
                       </div>
 
-                      <div className="card card-inverse card-primary form-group-row">
+                      {/*<div className="card card-inverse card-primary form-group-row">
                           <div className="card-header">Comment history</div>
                           <div className="card-text">
                               Panel content
                           </div>
-                      </div>
+                      </div>*/}
 
                   </div>
 
@@ -72,12 +82,12 @@ export class ErrorDetails extends React.Component {
                       <div className="card-header">Status</div>
                           <div className="card-text">
                               <div className="form-group">
-                                  <select className="form-control" id="status-selection">
-                                      <option>New</option>
-                                      <option>Ongoing</option>
-                                      <option>Resolved</option>
-                                      <option>Closed</option>
-                                      <option>Rejected</option>
+                                  <select className="form-control" id="status-selection" ref="errorStatus">
+                                      <option value="New">New</option>
+                                      <option value="Ongoing">Ongoing</option>
+                                      <option value="Resolved">Resolved</option>
+                                      <option value="Closed">Closed</option>
+                                      <option value="Rejected">Rejected</option>
                                   </select>
                               </div> 
                           </div>
@@ -85,15 +95,11 @@ export class ErrorDetails extends React.Component {
                   </div>
               </div>
 
-          </div>
+          </form>
 
 
     )
   }
 };
 
-export default connect(
-  (state) => {
-    return state;
-  }
-)(ErrorDetails);
+export default connect()(ErrorDetails);

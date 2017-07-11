@@ -7,34 +7,6 @@ export class ErrorListing extends React.Component {
 
   constructor (props) {
     super(props);
-        // this.state = {
-        //     errors: [
-        //             {
-        //                 id: 1,
-        //                 title: "Error one",
-        //                 description: "some description",
-        //                 steps: "steps to reproduce",
-        //                 comments: "some comments",
-        //                 status: "New"
-        //             },
-        //             {
-        //                 id: 2,
-        //                 title: "Error two",
-        //                 description: "some description",
-        //                 steps: "steps to reproduce",
-        //                 comments: "some comments",
-        //                 status: "New"
-        //             },
-        //             {
-        //                 id: 3,
-        //                 title: "Error three",
-        //                 description: "some description",
-        //                 steps: "steps to reproduce",
-        //                 comments: "some comments",
-        //                 status: "New"
-        //             }
-        //             ]
-        // };
   }
 
 
