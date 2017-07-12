@@ -19,7 +19,22 @@ var formData1 = {
     status: "Status1"
 }
 
+// var filters = {
+//   new: false,
+//   ongoing: false,
+//   resolved: false,
+//   closed: false,
+//   rejected: false
+// }
+
+var update = {
+  new: true
+}
+
 store.dispatch(actions.addError(formData1));
+// store.dispatch(actions.addFilters(filters));
+// store.dispatch(actions.addFilters(update));
+store.dispatch(actions.updateFilters(update));
 
 
 // App css

@@ -27,3 +27,15 @@ export var errorsReducer = (state = [], action) => {
         return state;
   };
 };
+
+export var filtersReducer = (state = [], action) => {
+ switch (action.type) {
+      case 'UPDATE_FILTERS':
+        return {
+          ...state.filters,
+          ...action.filters
+        }          
+      default:
+        return state;
+  };
+};

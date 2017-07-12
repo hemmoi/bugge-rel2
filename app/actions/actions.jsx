@@ -7,11 +7,21 @@ export var addError = (error) => {
   };
 };
 
-  export var updateError = (id, updates) => {
+export var updateError = (id, updates) => {
   return {
     type: 'UPDATE_ERROR',
     id,
     updates
   };
 };
+
+
+export var updateFilters = (filters) => {
+  return {
+    type: 'UPDATE_FILTERS',
+    filters
+  };
+};
+
+
 
