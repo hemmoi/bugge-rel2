@@ -25,7 +25,7 @@ export class ErrorListing extends React.Component {
     return (
     <div id="overview">
         <div id="error-list">
-          <IndexLink className="btn btn-success" id="details-page" to="/details/0">
+          <IndexLink className="btn btn-success" id="new-button" to="/details/0">
             +Create New
           </IndexLink>
             {renderErrors()}

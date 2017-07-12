@@ -1,0 +1,38 @@
+#error-filter {
+    flex-basis: 25%;
+}
+  
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.check-filter {
+    color: $alto;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    margin-right: 1rem;
+    text-shadow: $text-shadow;
+    display: flex;
+    flex-direction: row;
+}
+
+.checkbox {
+    border-color: $white;
+    display: inline-block;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #dcdcdc;
+    border-radius: 3px;
+    user-select: none;
+    box-shadow: $filter-shadow;
+}
+
+.check-filter-title {
+    user-select: none;
+    vertical-align: top;
+    margin-left: 4px;
+    line-height: 1.6rem;
+    padding-left: 0.45rem;
+}
