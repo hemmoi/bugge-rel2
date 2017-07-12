@@ -11,9 +11,11 @@ store.subscribe(() => {
   // console.log('New state', store.getState());
 });
 
-store.dispatch(actions.addError('Title1', 'Description1', 'Steps1', 'Comment1', 'Status1'));
-store.dispatch(actions.addError('Title2', 'Description2', 'Steps2', 'Comment2', 'Status2'));
-store.dispatch(actions.addError('Title3', 'Description3', 'Steps3', 'Comment3', 'Status3'));
+store.dispatch(actions.addError('Title1', 'Description1', 'Steps1', 'Comment1', 'New'));
+store.dispatch(actions.addError('Title2', 'Description2', 'Steps2', 'Comment2', 'Ongoing'));
+store.dispatch(actions.addError('Title3', 'Description3', 'Steps3', 'Comment3', 'Resolved'));
+store.dispatch(actions.addError('Title4', 'Description4', 'Steps4', 'Comment4', 'Closed'));
+store.dispatch(actions.addError('Title5', 'Description5', 'Steps5', 'Comment5', 'Rejected'));
 
 // App css
 require('style!css!sass!applicationStyles')

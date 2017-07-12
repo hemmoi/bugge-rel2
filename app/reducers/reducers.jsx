@@ -16,6 +16,21 @@ export var errorsReducer = (state = [], action) => {
             status: action.status
           }
         ];
+      case 'UPDATE_TODO':
+        return state.map((error) => {
+          if (error.id === action.id) {
+            return {
+              ...error,
+              ...action.title,
+              ...action.description,
+              ...action.steps,
+              ...action.comments,
+              ...action.status
+            };
+          } else {
+            return error;
+          };
+        });
       default:
         return state;
   };

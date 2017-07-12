@@ -1,5 +1,6 @@
 var React = require('react');
 var {connect} = require('react-redux');
+var {Link, IndexLink} = require('react-router');
 
 export class ErrorItem extends React.Component {
 
@@ -18,7 +19,9 @@ export class ErrorItem extends React.Component {
                 </div>
                 <div className="list-item-right">
                     <h3>{this.props.status}</h3>
-                    <button className="btn btn-warning">Open</button>
+                    <IndexLink className="btn btn-warning" id="details-page" to={"/details/" + this.props.id}>
+                      Open
+                    </IndexLink>
                 </div>
             </div>
     )
