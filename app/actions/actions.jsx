@@ -1,25 +1,17 @@
 import moment from 'moment';
 
-export var addError = (title, description, steps, comments, status) => {
+export var addError = (error) => {
   return {
     type: 'ADD_ERROR',
-    title,
-    description,
-    steps,
-    comments,
-    status
+    error
   };
 };
 
-  export var updateError = (id, title, description, steps, comments, status) => {
+  export var updateError = (id, updates) => {
   return {
     type: 'UPDATE_ERROR',
     id,
-    title,
-    description,
-    steps,
-    comments,
-    status
+    updates
   };
 };
 

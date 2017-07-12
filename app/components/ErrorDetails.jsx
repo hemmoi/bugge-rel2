@@ -14,13 +14,21 @@ export class ErrorDetails extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         var {dispatch} = this.props;
-        var errorTitle = this.refs.errorTitle.value;
-        var errorDescription = this.refs.errorDescription.value;
-        var errorSteps = this.refs.errorSteps.value;
-        var errorComment = this.refs.errorComment.value;
-        var errorStatus = this.refs.errorStatus.value;
+        var newFormData = {
+            title: this.refs.errorTitle.value,
+            description: this.refs.errorDescription.value,
+            steps: this.refs.errorSteps.value,
+            comments: this.refs.errorComment.value,
+            status: this.refs.errorStatus.value
+        }
 
-        dispatch(actions.addError(errorTitle, errorDescription, errorSteps, errorComment, errorStatus));
+        if (this.props.params.id != 0) {
+            console.log("update: " + this.props.params.id, newFormData);
+            dispatch(actions.updateError(this.props.params.id, newFormData));
+        } else {
+            console.log("new: " + this.props.params.id, newFormData);
+            dispatch(actions.addError(newFormData));
+        }   
     }
 
     findErrorById(errors) {

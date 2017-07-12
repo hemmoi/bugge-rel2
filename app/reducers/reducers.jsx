@@ -9,23 +9,15 @@ export var errorsReducer = (state = [], action) => {
           ...state,
           {
             id: uuid(),
-            title: action.title,
-            description: action.description,
-            steps: action.steps,
-            comments: action.comments,
-            status: action.status
+            ...action.error
           }
         ];
-      case 'UPDATE_TODO':
+      case 'UPDATE_ERROR':
         return state.map((error) => {
           if (error.id === action.id) {
             return {
               ...error,
-              ...action.title,
-              ...action.description,
-              ...action.steps,
-              ...action.comments,
-              ...action.status
+              ...action.updates
             };
           } else {
             return error;
