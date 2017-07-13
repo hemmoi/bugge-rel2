@@ -9,13 +9,48 @@ export class ErrorListing extends React.Component {
 
   constructor (props) {
     super(props);
+    this.statusFilter = this.statusFilter.bind(this);
+    this.filteredErrors = this.filteredErrors.bind(this);
   }
 
+  statusFilter(error) {
+    var {filters} = this.props;
+    if (!filters.new 
+      && !filters.ongoing 
+      && !filters.resolved 
+      && !filters.closed 
+      && !filters.rejected ) {
+        return true;
+      } 
+    else if (filters.new && error.status == "new"){
+        return true;
+      }
+    else if (filters.ongoing && error.status == "ongoing"){
+        return true;
+      }
+    else if (filters.resolved && error.status == "resolved"){
+        return true;
+      }
+    else if (filters.closed && error.status == "closed"){
+        return true;
+      }
+    else if (filters.rejected && error.status == "rejected"){
+        return true;
+      }
+    else {
+      return false;
+    }
+  }
+
+  filteredErrors() {
+    var {errors} = this.props;
+    return errors.filter(this.statusFilter);
+  }
 
   render() {
-    var {errors} = this.props;
+
     var renderErrors = () => {
-        return  errors.map((error) => {
+        return this.filteredErrors().map((error) => {
             return (
                 <ErrorItem key={error.id} {...error}></ErrorItem>
             )
@@ -39,7 +74,8 @@ export class ErrorListing extends React.Component {
 export default connect(
   (state) => {
     return {
-        errors: state.errors
+        errors: state.errors,
+        filters: state.filters
     };
   }
 )(ErrorListing);

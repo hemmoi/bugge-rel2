@@ -23,10 +23,8 @@ export class ErrorDetails extends React.Component {
         }
 
         if (this.props.params.id != 0) {
-            console.log("update: " + this.props.params.id, newFormData);
             dispatch(actions.updateError(this.props.params.id, newFormData));
         } else {
-            console.log("new: " + this.props.params.id, newFormData);
             dispatch(actions.addError(newFormData));
         }   
     }
@@ -113,11 +111,11 @@ export class ErrorDetails extends React.Component {
                           <div className="card-text">
                               <div className="form-group">
                                   <select className="form-control" id="status-selection" ref="errorStatus" defaultValue={formData.status}>
-                                      <option value="New">New</option>
-                                      <option value="Ongoing">Ongoing</option>
-                                      <option value="Resolved">Resolved</option>
-                                      <option value="Closed">Closed</option>
-                                      <option value="Rejected">Rejected</option>
+                                      <option value="new">New</option>
+                                      <option value="ongoing">Ongoing</option>
+                                      <option value="resolved">Resolved</option>
+                                      <option value="closed">Closed</option>
+                                      <option value="rejected">Rejected</option>
                                   </select>
                               </div> 
                           </div>

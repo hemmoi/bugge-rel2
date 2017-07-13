@@ -23,8 +23,6 @@ export class Filters extends React.Component {
 
   render() {
     var {filters} = this.props;
-    console.log(this.props);
-    console.log("filters" + filters.new);
 
     return (
       <div id="error-filter">
