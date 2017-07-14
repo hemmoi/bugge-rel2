@@ -52,7 +52,7 @@ export class ErrorListing extends React.Component {
     var renderErrors = () => {
         return this.filteredErrors().map((error) => {
             return (
-                <ErrorItem key={error.id} {...error}></ErrorItem>
+                <ErrorItem key={error._id} {...error}></ErrorItem>
             )
         });
     };

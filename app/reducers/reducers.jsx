@@ -8,7 +8,6 @@ export var errorsReducer = (state = [], action) => {
         return [
           ...state,
           {
-            id: uuid(),
             ...action.error
           }
         ];

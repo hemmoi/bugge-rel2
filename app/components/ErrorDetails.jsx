@@ -22,21 +22,20 @@ export class ErrorDetails extends React.Component {
             status: this.refs.errorStatus.value
         }
 
-        if (this.props.params.id != 0) {
-            dispatch(actions.updateError(this.props.params.id, newFormData));
+        if (this.props.params._id != 0) {
+            dispatch(actions.updateError(this.props.params._id, newFormData));
         } else {
             dispatch(actions.addError(newFormData));
         }   
     }
 
     findErrorById(errors) {
-        return errors.id === this.props.params.id;
+        return errors._id === this.props.params._id;
     }
 
   render() {
     var {errors} = this.props;
     var formData = {
-        id: "",
         title: "",
         description: "",
         steps: "",
@@ -44,7 +43,7 @@ export class ErrorDetails extends React.Component {
         status: ""
     };
 
-    if (this.props.params.id != 0) {
+    if (this.props.params._id != 0) {
         formData = errors.find(this.findErrorById);
     }
 

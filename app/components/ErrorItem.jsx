@@ -10,6 +10,7 @@ export class ErrorItem extends React.Component {
 
   render() {
     var {details} = this.props;
+    console.log(this.props);
 
     return (
             <div className="list-item">
@@ -19,7 +20,7 @@ export class ErrorItem extends React.Component {
                 </div>
                 <div className="list-item-right">
                     <h3>{this.props.status}</h3>
-                    <IndexLink className="btn btn-warning" id="details-page" to={"/details/" + this.props.id}>
+                    <IndexLink className="btn btn-warning" id="details-page" to={"/details/" + this.props._id}>
                       Open
                     </IndexLink>
                 </div>

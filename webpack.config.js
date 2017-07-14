@@ -15,7 +15,7 @@ module.exports = {
     'script!jquery/dist/jquery.min.js',
     'script!tether/dist/js/tether.min.js',
     'script!bootstrap/dist/js/bootstrap.min.js',
-    './app/app.jsx'
+    './app/client.jsx'
   ],
   externals: {
     jquery: 'jQuery'

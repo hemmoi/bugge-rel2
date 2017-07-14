@@ -10,7 +10,7 @@ export default (
   <Router history={hashHistory}>
     <Route path="/" component={Main}>
       <Route path="error" component={ErrorListing}/>
-      <Route path="details(/:id)" component={ErrorDetails}/>
+      <Route path="details(/:_id)" component={ErrorDetails}/>
       <IndexRoute component={ErrorListing} />
     </Route>
   </Router>
