@@ -10,7 +10,6 @@ export class ErrorItem extends React.Component {
 
   render() {
     var {details} = this.props;
-    console.log(this.props);
 
     return (
             <div className="list-item">

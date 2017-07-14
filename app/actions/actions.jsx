@@ -8,21 +8,39 @@ export var addError = (error) => {
         dispatch({type:"ADD_ERROR", error:response.data})
       })
       .catch(function(err) {
-        // dispatch({type:"ADD_ERROR_FAILED", payload:"Database addition failed"})
+        console.log("Database addition failed", err);
       })
   }
-  // return {
-  //   type: 'ADD_ERROR',
-  //   error
-  // };
+};
+
+export var getErrorsFromDb = () => {
+  return function(dispatch) {
+    axios.get("/errors")
+      .then(function(response) {
+        dispatch({type:"ADD_ALL_ERRORS", errors:response.data})
+      })
+      .catch(function(err) {
+        console.log("Get from database failed", err);      
+      })
+  }
 };
 
 export var updateError = (id, updates) => {
-  return {
-    type: 'UPDATE_ERROR',
-    id,
-    updates
-  };
+  return function(dispatch) {
+    axios.put("/errors:" + id)
+      .then(function(response) {
+        dispatch({type:"UPDATE_ERROR", id, error:response.data})
+      })
+      .catch(function(err) {
+        console.log("Error update to DB failed", err);      
+      })
+  }
+  
+  // return {
+  //   type: 'UPDATE_ERROR',
+  //   id,
+  //   updates
+  // };
 };
 
 

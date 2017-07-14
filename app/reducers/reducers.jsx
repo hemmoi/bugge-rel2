@@ -11,6 +11,12 @@ export var errorsReducer = (state = [], action) => {
             ...action.error
           }
         ];
+    break;
+      case 'ADD_ALL_ERRORS':
+        return [
+          ...state,
+          ...action.errors
+        ];
       case 'UPDATE_ERROR':
         return state.map((error) => {
           if (error.id === action.id) {
