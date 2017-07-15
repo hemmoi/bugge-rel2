@@ -10,6 +10,17 @@ var users = require('./routes/users');
 
 var app = express();
 
+// Winston for debugging
+  var winston = require('winston');
+
+  winston.log('info', 'Hello distributed log files!');
+  winston.info('Hello again distributed logs');
+
+  winston.level = 'debug';
+  winston.log('debug', 'Now my debug messages are written to console!');
+
+// END Winston
+
 // // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'jade');
@@ -21,6 +32,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.json());
+// app.use(express.urlencoded()); // to support URL-encoded bodies
 
 // APIs
 var mongoose = require('mongoose');
@@ -31,7 +44,8 @@ var Errors = require('./models/errors.js');
 // ----->>>> POST ERRORS <<<< --------------
 app.post('/errors', function(req, res) {
   var error = req.body;
-
+  winston.log('debug', "POST-HEADER:" + JSON.stringify(req.headers['content-type']));
+  winston.log('debug', "POST:" + JSON.stringify(error));
   Errors.create(error, function(err, errors){
     if(err) {
       throw err;
@@ -53,7 +67,7 @@ app.get('/errors', function(req, res) {
 // ----->>>>  DELETE ERRORS <<<<---------
 app.delete('/errors/:_id', function(req, res) {
   var query = {_id: req.params._id};
-
+  winston.log('debug', "DELETE:" + req.body);
   Errors.remove(query, function(err, errors) {
     if(err) {
       throw err;
@@ -65,8 +79,8 @@ app.delete('/errors/:_id', function(req, res) {
 // ----->>>>  UPDATE ERRORS <<<<---------
 app.put('/errors/:_id', function(req, res) {
   var error = req.body;
-  var query = {_id: req.params._id};
-
+  winston.log('debug', "PUT-HEADER:" + JSON.stringify(req.headers['content-type']));
+  winston.log('debug', "PUT:" + JSON.stringify(error));
   var update = {
     '$set': {
       title: error.title,
@@ -76,7 +90,7 @@ app.put('/errors/:_id', function(req, res) {
       status: error.status
       }
   }; 
-
+  winston.log('debug',"update text !!!!:  ", JSON.stringify(update));
 
   // When true returns the updated document
   var options = {new: true};

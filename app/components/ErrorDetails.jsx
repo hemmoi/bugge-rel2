@@ -23,6 +23,7 @@ export class ErrorDetails extends React.Component {
         }
 
         if (this.props.params._id != 0) {
+            console.log("Form: " + this.props.params._id, newFormData);
             dispatch(actions.updateError(this.props.params._id, newFormData));
         } else {
             dispatch(actions.addError(newFormData));
