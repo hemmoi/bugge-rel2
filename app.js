@@ -79,8 +79,10 @@ app.delete('/errors/:_id', function(req, res) {
 // ----->>>>  UPDATE ERRORS <<<<---------
 app.put('/errors/:_id', function(req, res) {
   var error = req.body;
+  var query = {_id: req.params._id};
   winston.log('debug', "PUT-HEADER:" + JSON.stringify(req.headers['content-type']));
   winston.log('debug', "PUT:" + JSON.stringify(error));
+  winston.log('debug', "QUERY:" + JSON.stringify(query));
   var update = {
     '$set': {
       title: error.title,
