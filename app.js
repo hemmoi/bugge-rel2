@@ -80,9 +80,7 @@ app.delete('/errors/:_id', function(req, res) {
 app.put('/errors/:_id', function(req, res) {
   var error = req.body;
   var query = {_id: req.params._id};
-  winston.log('debug', "PUT-HEADER:" + JSON.stringify(req.headers['content-type']));
-  winston.log('debug', "PUT:" + JSON.stringify(error));
-  winston.log('debug', "QUERY:" + JSON.stringify(query));
+
   var update = {
     '$set': {
       title: error.title,
@@ -92,7 +90,7 @@ app.put('/errors/:_id', function(req, res) {
       status: error.status
       }
   }; 
-  winston.log('debug',"update text !!!!:  ", JSON.stringify(update));
+
 
   // When true returns the updated document
   var options = {new: true};

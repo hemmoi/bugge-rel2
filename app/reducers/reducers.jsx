@@ -20,8 +20,6 @@ export var errorsReducer = (state = [], action) => {
       case 'UPDATE_ERROR':
         return state.map((error) => {
           if (error._id == action.id) {
-            console.log("error " + JSON.stringify(error));
-            console.log("updates " + JSON.stringify(action.updates));
             return {
               ...error,
               ...action.updates
