@@ -28,7 +28,7 @@ export var getErrorsFromDb = () => {
 export var updateError = (id, updates) => {
   console.log("updateError: " + JSON.stringify(updates));
   return function(dispatch) {
-    axios.put("/errors:" + id, updates)
+    axios.put("/errors/" + id, updates)
       .then(function(response) {
         dispatch({type:"UPDATE_ERROR", id, error:response.data})
       })
