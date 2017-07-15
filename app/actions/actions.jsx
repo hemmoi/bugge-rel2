@@ -30,7 +30,9 @@ export var updateError = (id, updates) => {
   return function(dispatch) {
     axios.put("/errors/" + id, updates)
       .then(function(response) {
-        dispatch({type:"UPDATE_ERROR", id, error:response.data})
+        console.log("Response.data " + JSON.stringify(response.data));
+        console.log("ID " + id);
+        dispatch({type:"UPDATE_ERROR", id, updates:response.data})
       })
       .catch(function(err) {
         console.log("Error update to DB failed", err);      
