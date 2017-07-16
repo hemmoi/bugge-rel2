@@ -44,3 +44,14 @@ export var filtersReducer = (state = [], action) => {
         return state;
   };
 };
+
+export var messageReducer = (state = "", action) => {
+ switch (action.type) {
+      case 'UPDATE_MESSAGE':
+        return {
+          message: action.message
+        }          
+      default:
+        return state;
+  };
+};

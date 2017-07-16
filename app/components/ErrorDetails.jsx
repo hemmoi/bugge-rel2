@@ -1,6 +1,8 @@
 var React = require('react');
 var {connect} = require('react-redux');
 var actions = require('actions');
+import AlertContainer from 'react-alert';
+import thunk from 'redux-thunk';
 
 export class ErrorDetails extends React.Component {
 
@@ -8,8 +10,23 @@ export class ErrorDetails extends React.Component {
         super(props);
         this.findErrorById = this.findErrorById.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.showAlert = this.showAlert.bind(this);
+        this.alertOptions = {
+            offset: 14,
+            position: 'top left',
+            theme: 'dark',
+            time: 5000,
+            transition: 'scale'
+        }
     }
     
+    showAlert = () => {
+        var {message} = this.props.message;
+        this.msg.show(message, {
+        time: 2000,
+        type: 'success',
+        })
+    }
 
     handleSubmit(e) {
         e.preventDefault();
@@ -23,9 +40,16 @@ export class ErrorDetails extends React.Component {
         }
 
         if (this.props.params._id != 0) {
-            dispatch(actions.updateError(this.props.params._id, newFormData));
+            dispatch(actions.updateError(this.props.params._id, newFormData))
+            .then(() => {
+                this.showAlert();
+            });
+
         } else {
-            dispatch(actions.addError(newFormData));
+            dispatch(actions.addError(newFormData))
+            .then(() => {
+                this.showAlert();
+            });
         }   
     }
 
@@ -50,8 +74,11 @@ export class ErrorDetails extends React.Component {
     return (
       <form onSubmit={this.handleSubmit} id="error-template">
           <div className="input-group input-group-lg form-buttons">
-              <button type="submit" className="btn btn-success form-button">Save changes</button>
-              <a href="#" className="btn btn-danger form-button">Close</a>
+              <div>
+                <button type="submit" className="btn btn-success form-button">Save changes</button>
+                <a href="#" className="btn btn-danger form-button">Close</a>
+                <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
+              </div>
           </div>
 
           <div id="error-form">
@@ -132,7 +159,8 @@ export class ErrorDetails extends React.Component {
 export default connect(
   (state) => {
     return {
-        errors: state.errors
+        errors: state.errors,
+        message: state.message
     };
   }
 )(ErrorDetails);
