@@ -15,7 +15,7 @@ export class ErrorItem extends React.Component {
             <div className="list-item">
                 <div className="list-item-left">
                     <h4 className="list-item-title">{this.props.title}</h4>
-                    <span> {this.props.description} </span>
+                    <span className="list-item-desc"> {this.props.description} </span>
                 </div>
                 <div className="list-item-right">
                     <h5>Status: <strong>{this.props.status}</strong></h5>
