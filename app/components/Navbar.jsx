@@ -8,7 +8,7 @@ export class Navbar extends React.Component {
   render () {
     return (
       <div id="title">
-        <img id="logo" src="logo.jpg"></img>
+        <img id="logo" src="/images/bugge.png"></img>
         <h1>Bugge</h1>
       </div>
     );

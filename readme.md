@@ -1,1 +1,1 @@
-Boilerplate React App
+Bugge - Error Reporting System

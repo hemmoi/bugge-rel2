@@ -29,23 +29,23 @@ export class Filters extends React.Component {
           <h2>Filter errors</h2>
           <div className="filter-group">
             <div className="check-filter">
-              <input type="checkbox" ref="new" className="checkbox" onChange={this.handleChange} defaultChecked={filters.new}> </input>
+              <input type="checkbox" ref="new" className="checkbox" onChange={this.handleChange} defaultChecked={filters.new}/>
               <span className="check-filter-title">New</span>
             </div>
             <div className="check-filter">
-            <input type="checkbox" ref="ongoing" className="checkbox" onChange={this.handleChange} defaultChecked={filters.ongoing}></input>
+            <input type="checkbox" ref="ongoing" className="checkbox" onChange={this.handleChange} defaultChecked={filters.ongoing}/>
               <span className="check-filter-title">Ongoing</span>
             </div>
             <div className="check-filter">
-              <input type="checkbox" ref="resolved" className="checkbox" onChange={this.handleChange} defaultChecked={filters.resolved}></input>
+              <input type="checkbox" ref="resolved" className="checkbox" onChange={this.handleChange} defaultChecked={filters.resolved}/>
               <span className="check-filter-title">Resolved</span>
             </div>
             <div className="check-filter">
-              <input type="checkbox" ref="closed" className="checkbox" onChange={this.handleChange} defaultChecked={filters.closed}></input>
+              <input type="checkbox" ref="closed" className="checkbox" onChange={this.handleChange} defaultChecked={filters.closed}/>
               <span className="check-filter-title">Closed</span>
             </div>
             <div className="check-filter">
-              <input type="checkbox" ref="rejected" className="checkbox" onChange={this.handleChange} defaultChecked={filters.rejected}></input>
+              <input type="checkbox" ref="rejected" className="checkbox" onChange={this.handleChange} defaultChecked={filters.rejected}/>
               <span className="check-filter-title">Rejected</span>
             </div>
           </div>

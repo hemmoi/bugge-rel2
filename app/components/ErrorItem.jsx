@@ -14,11 +14,11 @@ export class ErrorItem extends React.Component {
     return (
             <div className="list-item">
                 <div className="list-item-left">
-                    <h3>{this.props.title}</h3>
+                    <h4 className="list-item-title">{this.props.title}</h4>
                     <span> {this.props.description} </span>
                 </div>
                 <div className="list-item-right">
-                    <h3>{this.props.status}</h3>
+                    <h5>Status: <strong>{this.props.status}</strong></h5>
                     <IndexLink className="btn btn-warning" id="details-page" to={"/details/" + this.props._id}>
                       Open
                     </IndexLink>

@@ -88,7 +88,7 @@ export class ErrorDetails extends React.Component {
                       <div className="card card-inverse card-primary form-group-row">
                           <div className="card-header">Title</div>
                           <div className="card-text">
-                              <input ref="errorTitle" defaultValue={formData.title} type="text" name="header" className="form-input" maxLength="60" required></input>
+                              <input ref="errorTitle" defaultValue={formData.title} type="text" name="header" className="form-input" maxLength="60" required/>
                           </div>
                       </div>
 

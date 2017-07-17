@@ -65,7 +65,9 @@ export class ErrorListing extends React.Component {
           </IndexLink>
             {renderErrors()}
         </div>
-        <Filters></Filters>
+        <div>
+         <Filters/>
+        </div>
       </div>
     )
   }
