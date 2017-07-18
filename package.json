@@ -7,7 +7,7 @@
     "build": "webpack",
     "start": "node ./bin/www"
   },
-  "author": "Andrew Mead",
+  "author": "Kimmo Halonen",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.9.1",
