@@ -1,6 +1,35 @@
 import moment from 'moment';
 import axios from 'axios';
 
+export var addUser = (user) => {
+  return function(dispatch) {
+    return new Promise((resolve) => {
+      axios.post("/user", user)
+        .then(function(response) {
+          dispatch({type:"UPDATE_CURRENT_USER", user:response.data});
+          dispatch(updateMessage("Sign-up was successful"));
+          resolve();
+        })
+        .catch(function(err) {
+          console.log("Sign-up failed", err);
+        })
+    })
+  }
+};
+
+export var getUser = (email) => {
+  return function(dispatch) {
+    console.log("action: " + email);
+    axios.post("/user/signin", email)
+      .then(function(response) {
+        dispatch({type:"UPDATE_CURRENT_USER", user:response.data})
+      })
+      .catch(function(err) {
+        console.log("Get from database failed", err);      
+      })
+  }
+};
+
 export var addError = (error) => {
   return function(dispatch) {
     return new Promise((resolve) => {

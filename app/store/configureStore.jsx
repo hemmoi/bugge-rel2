@@ -4,12 +4,14 @@ import thunk from 'redux-thunk';
 import {errorsReducer} from 'reducers';
 import {filtersReducer} from 'reducers';
 import {messageReducer} from 'reducers';
+import {userReducer} from 'reducers';
 
 export var configure = (initialState = {}) => {
   var reducer = redux.combineReducers({
     errors: errorsReducer,
     filters: filtersReducer,
-    message: messageReducer
+    message: messageReducer,
+    currentUser: userReducer
   });
 
   var store = redux.createStore(reducer, redux.compose(

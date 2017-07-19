@@ -2,6 +2,19 @@ var uuid = require('node-uuid');
 var moment = require('moment');
 
 
+export var userReducer = (state = {}, action) => {
+  switch (action.type) {
+
+      case 'UPDATE_CURRENT_USER':
+        return {
+          user: action.user
+        }
+      break;
+      default:
+        return state;
+  };
+};
+
 export var errorsReducer = (state = [], action) => {
   switch (action.type) {
       case 'ADD_ERROR':
