@@ -1,5 +1,6 @@
 var React = require('react');
 var {connect} = require('react-redux');
+var {Link, IndexLink} = require('react-router');
 var actions = require('actions');
 import AlertContainer from 'react-alert';
 
@@ -63,6 +64,12 @@ export class SignUp extends React.Component {
                     <input type="password" id="password" className="form-control" ref="password" required/>
                 </div>
                 <button className="btn btn-primary" type="submit">Submit</button>
+                    <span className="sign-up-link">
+                        Already have an account?
+                        <IndexLink className="auth-link" to={"/signin/"}>
+                        Login
+                        </IndexLink>
+                    </span>
             </form>
         </div>      
     )

@@ -31,6 +31,8 @@ export class ErrorDetails extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         var {dispatch} = this.props;
+        var token = localStorage.getItem('token');
+        console.log("token: ", token);
         var newFormData = {
             title: this.refs.errorTitle.value,
             description: this.refs.errorDescription.value,

@@ -22,13 +22,18 @@ export var getUser = (email) => {
     console.log("action: " + email);
     axios.post("/user/signin", email)
       .then(function(response) {
-        dispatch({type:"UPDATE_CURRENT_USER", user:response.data})
+        localStorage.setItem('token', response.data.token);
+        dispatch({type:"UPDATE_CURRENT_USER", user:response.data});
       })
       .catch(function(err) {
         console.log("Get from database failed", err);      
       })
   }
 };
+
+export var getToken = () => {
+  return localStorage.getItem('token');
+}
 
 export var addError = (error) => {
   return function(dispatch) {
