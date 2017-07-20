@@ -23,7 +23,7 @@ var redirectIfLoggedIn = (nextState, replace, next) => {
 
 export default (
   <Router history={hashHistory}>
-    <Route path="/" component={Main} onEnter={requireLogin}>
+    <Route path="/" component={Main}>
       <Route path="signup" component={SignUp} onEnter={redirectIfLoggedIn}/>
       <Route path="signin" component={SignIn} onEnter={redirectIfLoggedIn}/>
       <Route path="buglist" component={ErrorListing} onEnter={requireLogin}/>

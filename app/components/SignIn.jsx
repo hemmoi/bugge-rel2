@@ -2,29 +2,12 @@ var React = require('react');
 var {connect} = require('react-redux');
 var {Link, IndexLink} = require('react-router');
 var actions = require('actions');
-import AlertContainer from 'react-alert';
 
 export class SignIn extends React.Component {
 
     constructor (props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.showAlert = this.showAlert.bind(this);
-        this.alertOptions = {
-            offset: 14,
-            position: 'top left',
-            theme: 'dark',
-            time: 5000,
-            transition: 'scale'
-        }
-    }
-
-    showAlert = () => {
-        var {message} = this.props.message;
-        this.msg.show(message, {
-        time: 2000,
-        type: 'success',
-        })
     }
 
     handleSubmit(e) {
@@ -38,14 +21,14 @@ export class SignIn extends React.Component {
                     
         dispatch(actions.getUser(submitData))
             .then(() => {
-                this.showAlert();
-        });
+                this.props.history.push("/buglist");
+        });        
     }
     
   render () {
     return (
         <div className="col-md-8 col-md-offset-2">
-            <form id="signupForm" onSubmit={this.handleSubmit}>
+            <form className="auth-form" onSubmit={this.handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="email">Email</label>
                     <input type="email" id="email" className="form-control" ref="email" required/>
@@ -54,7 +37,7 @@ export class SignIn extends React.Component {
                     <label htmlFor="password">Password</label>
                     <input type="password" id="password" className="form-control" ref="password" required/>
                 </div>
-                <button className="btn btn-primary" type="submit">Submit</button>
+                <button className="btn btn-primary" type="submit">Login</button>
                 <span className="sign-up-link">
                     Don't have an account?                     
                     <IndexLink className="auth-link" to={"/signup/"}>

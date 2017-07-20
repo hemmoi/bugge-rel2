@@ -46,7 +46,7 @@ export class SignUp extends React.Component {
   render () {
     return (
         <div className="col-md-8 col-md-offset-2">
-            <form id="signupForm" onSubmit={this.handleSubmit}>
+            <form className="auth-form" onSubmit={this.handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="firstName">First Name</label>
                     <input type="text" id="firstName" className="form-control" ref="firstName" required/>

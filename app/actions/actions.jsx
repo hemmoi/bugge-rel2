@@ -19,15 +19,17 @@ export var addUser = (user) => {
 
 export var getUser = (email) => {
   return function(dispatch) {
-    console.log("action: " + email);
-    axios.post("/user/signin", email)
-      .then(function(response) {
-        localStorage.setItem('token', response.data.token);
-        dispatch({type:"UPDATE_CURRENT_USER", user:response.data});
-      })
-      .catch(function(err) {
-        console.log("Get from database failed", err);      
-      })
+    return new Promise((resolve) => {
+      axios.post("/user/signin", email)
+        .then(function(response) {
+          localStorage.setItem('token', response.data.token);
+          dispatch({type:"UPDATE_CURRENT_USER", user:response.data});
+          resolve();
+        })
+        .catch(function(err) {
+          console.log("Get from database failed", err);      
+        })
+    })
   }
 };
 

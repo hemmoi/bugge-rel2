@@ -15,14 +15,10 @@ export class Main extends React.Component {
     
     return (
       <div>
-        <div>
-          <Navbar/>
+        <Navbar/>
           <div>
-            <div>
-              {this.props.children}
-            </div>
+            {this.props.children}
           </div>
-        </div>
       </div>
     )
   }
