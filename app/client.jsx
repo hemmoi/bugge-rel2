@@ -60,7 +60,7 @@ store.subscribe(() => {
 // store.dispatch(actions.addError(testData5));
 
 // Get errors from DB
-store.dispatch(actions.getErrorsFromDb());
+// store.dispatch(actions.getErrorsFromDb());
 
 
 // App css

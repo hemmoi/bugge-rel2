@@ -38,9 +38,18 @@ export var getToken = () => {
 }
 
 export var addError = (error) => {
+  const token = localStorage.getItem('token')
+                ? '?token='+localStorage.getItem('token')
+                : '';
   return function(dispatch) {
     return new Promise((resolve) => {
-      axios.post("/errors", error)
+      axios({
+        method: 'POST',
+        url: '/errors'+token,
+        data: error,
+        headers: {"Content-Type":"application/json"}
+
+      })
         .then(function(response) {
           dispatch({type:"ADD_ERROR", error:response.data});
           dispatch(updateMessage("New error report was created."));
@@ -54,8 +63,15 @@ export var addError = (error) => {
 };
 
 export var getErrorsFromDb = () => {
+  const token = localStorage.getItem('token')
+                ? '?token='+localStorage.getItem('token')
+                : '';  
   return function(dispatch) {
-    axios.get("/errors")
+    axios({
+        method: 'GET',
+        url: '/errors'+token,
+        headers: {"Content-Type":"application/json"}
+      })
       .then(function(response) {
         dispatch({type:"ADD_ALL_ERRORS", errors:response.data})
       })
@@ -66,9 +82,18 @@ export var getErrorsFromDb = () => {
 };
 
 export var updateError = (id, updates) => {
+  const token = localStorage.getItem('token')
+              ? '?token='+localStorage.getItem('token')
+              : '';
   return function(dispatch) {
     return new Promise((resolve) => {
-      axios.put("/errors/" + id, updates)
+      axios({
+        method: 'PUT',
+        url: '/errors/' + id + token,
+        data: updates,
+        headers: {"Content-Type":"application/json"}
+
+        })
         .then(function(response) {
             dispatch({type:"UPDATE_ERROR", id, updates:response.data}); 
             dispatch(updateMessage("Document was saved."));

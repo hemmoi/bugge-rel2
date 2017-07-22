@@ -4,7 +4,7 @@ var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 var winston = require('winston');
 winston.level = 'debug';
-winston.log('info', 'Hello distributed log files!');
+winston.log('info', 'Hello from user log files!');
 var User = require('../models/user');
 
 // ----->>>> ADD USER <<<< --------------
@@ -27,7 +27,6 @@ router.post('/', function(req, res) {
 // ----->>>>  GET USER <<<<---------
 router.post('/signin', function(req, res) {
 
-winston.log('info', req.body.email);
   User.findOne({email:req.body.email}, function(err, user) {
     if(err) {
       throw err;
@@ -50,7 +49,7 @@ winston.log('info', req.body.email);
     res.status(200).json({
       message: 'Successfully logged in',
       token: token,
-      user: user
+      userDetails: user
     });
   })
 });
