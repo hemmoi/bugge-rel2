@@ -3,9 +3,9 @@ import * as Redux from 'react-redux';
 
 import * as actions from "actions";
 
-// import Navbar from "Navbar";
+import Navbar from "Navbar";
 
-export class Main extends React.Component {
+export class BuggeApp extends React.Component {
   constructor (props) {
     super(props);
   }
@@ -15,7 +15,7 @@ export class Main extends React.Component {
     
     return (
       <div>
-        {/* <Navbar/> */}
+        <Navbar/>
           <div>
             {this.props.children}
           </div>
@@ -24,4 +24,4 @@ export class Main extends React.Component {
   }
 };
 
-export default Redux.connect()(Main);
+export default Redux.connect()(BuggeApp);

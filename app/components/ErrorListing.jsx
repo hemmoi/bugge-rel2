@@ -4,6 +4,7 @@ var {Link, IndexLink} = require('react-router');
 
 import Filters from "Filters";
 import ErrorItem from "ErrorItem";
+import Navbar from "Navbar";
 
 export class ErrorListing extends React.Component {
 
@@ -58,17 +59,21 @@ export class ErrorListing extends React.Component {
     };
 
     return (
-    <div id="overview">
-        <div id="error-list">
-          <IndexLink className="btn btn-success" id="new-button" to="/details/0">
-            +Create New
-          </IndexLink>
-            {renderErrors()}
-        </div>
-        <div>
-         <Filters/>
+      <div>
+        <Navbar/>
+        <div id="overview">
+          <div id="error-list">
+            <IndexLink className="btn btn-success" id="new-button" to="/details/0">
+              +Create New
+            </IndexLink>
+              {renderErrors()}
+          </div>
+          <div>
+          <Filters/>
+          </div>
         </div>
       </div>
+
     )
   }
 };

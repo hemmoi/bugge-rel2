@@ -3,6 +3,7 @@ var {connect} = require('react-redux');
 var {Link, IndexLink} = require('react-router');
 var actions = require('actions');
 import AlertContainer from 'react-alert';
+import HelloNavbar from 'HelloNavbar';
 
 export class SignUp extends React.Component {
 
@@ -45,33 +46,37 @@ export class SignUp extends React.Component {
     
   render () {
     return (
-        <div className="col-md-8 col-md-offset-2">
-            <form className="auth-form" onSubmit={this.handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="firstName">First Name</label>
-                    <input type="text" id="firstName" className="form-control" ref="firstName" required/>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="lastName">Last Name</label>
-                    <input type="text" id="lastName" className="form-control" ref="lastName" required/>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input type="email" id="email" className="form-control" ref="email" required/>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" id="password" className="form-control" ref="password" required/>
-                </div>
-                <button className="btn btn-primary" type="submit">Submit</button>
-                    <span className="sign-up-link">
-                        Already have an account?
-                        <IndexLink className="auth-link" to={"/signin/"}>
-                        Login
-                        </IndexLink>
-                    </span>
-            </form>
-        </div>      
+        <div>
+            <HelloNavbar/>
+            <div className="col-md-8 col-md-offset-2">
+                <form className="auth-form" onSubmit={this.handleSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="firstName">First Name</label>
+                        <input type="text" id="firstName" className="form-control" ref="firstName" required/>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="lastName">Last Name</label>
+                        <input type="text" id="lastName" className="form-control" ref="lastName" required/>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="email">Email</label>
+                        <input type="email" id="email" className="form-control" ref="email" required/>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="password">Password</label>
+                        <input type="password" id="password" className="form-control" ref="password" required/>
+                    </div>
+                    <button className="btn btn-primary" type="submit">Submit</button>
+                        <span className="sign-up-link">
+                            Already have an account?
+                            <IndexLink className="auth-link" to={"/signin/"}>
+                            Login
+                            </IndexLink>
+                        </span>
+                </form>
+            </div> 
+        </div>
+     
     )
   }
 };

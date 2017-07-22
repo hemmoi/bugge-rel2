@@ -8,7 +8,7 @@ export class Navbar extends React.Component {
   constructor (props) {
     super(props);
     this.logout = this.logout.bind(this);
-    this.logoutButton = this.logoutButton.bind(this);
+    this.helloText = this.helloText.bind(this);
   }
 
   logout() {
@@ -16,14 +16,13 @@ export class Navbar extends React.Component {
     localStorage.clear();
   }
 
-  logoutButton() {
-    console.log(localStorage.getItem('token'));
-    if (localStorage.getItem('token')) {
-      console.log("logout button");
+  helloText() {
+
+    var firstName = localStorage.getItem('firstName');
+    if (firstName) {
       return (
         <div>
-          <span>Hello </span>
-          <IndexLink className="btn btn-success " id="logout-button" onClick={this.logout} to={"/signin"}>Logout</IndexLink>
+          <span>Hello, {firstName} </span> 
         </div>
       );
     }
@@ -38,7 +37,13 @@ export class Navbar extends React.Component {
             <h1>Bugge</h1>
           </div>
           <div className="header-rigth">
-            {this.logoutButton()}
+            {this.helloText()}
+            <IndexLink  className="btn btn-success " 
+                        id="logout-button" 
+                        onClick={this.logout} 
+                        to={"/signin"}>
+                Logout
+            </IndexLink>
           </div>
       </div>
     );

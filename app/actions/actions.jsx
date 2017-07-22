@@ -23,7 +23,7 @@ export var getUser = (email) => {
       axios.post("/user/signin", email)
         .then(function(response) {
           localStorage.setItem('token', response.data.token);
-          dispatch({type:"UPDATE_CURRENT_USER", user:response.data});
+          localStorage.setItem('firstName', response.data.userDetails.firstName);
           resolve();
         })
         .catch(function(err) {
