@@ -1,6 +1,7 @@
 var React = require('react');
 var {connect} = require('react-redux');
 var {Link, IndexLink} = require('react-router');
+var actions = require('actions');
 
 import Filters from "Filters";
 import ErrorItem from "ErrorItem";
@@ -12,6 +13,10 @@ export class ErrorListing extends React.Component {
     super(props);
     this.statusFilter = this.statusFilter.bind(this);
     this.filteredErrors = this.filteredErrors.bind(this);
+    var {dispatch} = this.props;
+    if (this.props.errors.length == 0) {
+      dispatch(actions.getErrorsFromDb());
+    }
   }
 
   statusFilter(error) {

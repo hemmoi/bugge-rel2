@@ -1,5 +1,6 @@
 import React from 'react';
 import {Route, Router, IndexRoute, hashHistory} from 'react-router';
+var {connect} = require('react-redux');
 
 import Main from 'Main';
 import SignIn from 'SignIn';
@@ -7,10 +8,10 @@ import SignUp from 'SignUp';
 import ErrorListing from 'ErrorListing';
 import ErrorDetails from 'ErrorDetails';
 
-var requireLogin = (nextState, replace, next) => {
+var loadOrLogin = (nextState, replace, next) => {
   if(!localStorage.getItem('token')) {
     replace('/signin');
-  }
+  } 
   next();
 };
 
@@ -26,8 +27,8 @@ export default (
     <Route path="/" component={Main}>
       <Route path="signup" component={SignUp} onEnter={redirectIfLoggedIn}/>
       <Route path="signin" component={SignIn} onEnter={redirectIfLoggedIn}/>
-      <Route path="buglist" component={ErrorListing} onEnter={requireLogin}/>
-      <Route path="details(/:_id)" component={ErrorDetails} onEnter={requireLogin}/>
+      <Route path="buglist" component={ErrorListing} onEnter={loadOrLogin}/>
+      <Route path="details(/:_id)" component={ErrorDetails} onEnter={loadOrLogin}/>
         <IndexRoute component={SignIn} onEnter={redirectIfLoggedIn} />  
     </Route>
   </Router>

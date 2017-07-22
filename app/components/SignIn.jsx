@@ -21,9 +21,9 @@ export class SignIn extends React.Component {
         };
                     
         dispatch(actions.getUser(submitData))
-            .then(() => {
-                dispatch(actions.getErrorsFromDb());
-            })
+            // .then(() => {
+            //     dispatch(actions.getErrorsFromDb());
+            // })
             .then(() => {
                 this.props.history.push("/buglist");
         });        
