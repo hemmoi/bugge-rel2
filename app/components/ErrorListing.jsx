@@ -2,6 +2,7 @@ var React = require('react');
 var {connect} = require('react-redux');
 var {Link, IndexLink} = require('react-router');
 var actions = require('actions');
+var FilterAPI = require('FilterAPI');
 
 import Filters from "Filters";
 import ErrorItem from "ErrorItem";
@@ -11,52 +12,21 @@ export class ErrorListing extends React.Component {
 
   constructor (props) {
     super(props);
-    this.statusFilter = this.statusFilter.bind(this);
-    this.filteredErrors = this.filteredErrors.bind(this);
     var {dispatch} = this.props;
     if (this.props.errors.length == 0) {
       dispatch(actions.getErrorsFromDb());
     }
   }
 
-  statusFilter(error) {
-    var {filters} = this.props;
-    if (!filters.new 
-      && !filters.ongoing 
-      && !filters.resolved 
-      && !filters.closed 
-      && !filters.rejected ) {
-        return true;
-      } 
-    else if (filters.new && error.status == "new"){
-        return true;
-      }
-    else if (filters.ongoing && error.status == "ongoing"){
-        return true;
-      }
-    else if (filters.resolved && error.status == "resolved"){
-        return true;
-      }
-    else if (filters.closed && error.status == "closed"){
-        return true;
-      }
-    else if (filters.rejected && error.status == "rejected"){
-        return true;
-      }
-    else {
-      return false;
-    }
-  }
-
-  filteredErrors() {
-    var {errors} = this.props;
-    return errors.filter(this.statusFilter);
-  }
 
   render() {
+    var {errors} = this.props;
+    var {filters} = this.props;
+
+    var filteredErrors = FilterAPI.filterItems(errors, filters);
 
     var renderErrors = () => {
-        return this.filteredErrors().map((error) => {
+        return filteredErrors.map((error) => {
             return (
                 <ErrorItem key={error._id} {...error}></ErrorItem>
             )
