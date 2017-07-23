@@ -9,8 +9,6 @@ var Errors = require('../models/errors.js');
 
 // -------->>> AUTHENTICATE USER <<<<----------
 router.use('/', function (req, res, next) {
-  winston.log('info', 'Hello from error log files!');
-  winston.log("Verify token: ", req.query.token);
     jwt.verify(req.query.token, 'secret', function (err, decoded) {
         if (err) {
             return res.status(401).json({
@@ -34,7 +32,7 @@ router.post('/', function(req, res, next) {
   })
 });
 
-// ----->>>>  GET ERRORS <<<<---------
+// ----->>>>  GET ALL ERRORS <<<<---------
 router.get('/', function(req, res, next) {
   // var decoded = jwt.decode(req.query.token);
   Errors.find(function(err, errors) {
@@ -42,6 +40,17 @@ router.get('/', function(req, res, next) {
       throw err;
     }
     res.json(errors);
+  })
+});
+
+// ----->>>>  GET ONE ERROR <<<<---------
+router.get('/one/:_id', function(req, res, next) {
+  var query = {_id: req.params._id};
+  Errors.findOne(query, function(err, error) {
+    if(err) {
+      throw err;
+    }
+    res.json(error);
   })
 });
 
@@ -62,7 +71,6 @@ router.put('/:_id', function(req, res, next) {
   // var decoded = jwt.decode(req.query.token);
   var error = req.body;
   var query = {_id: req.params._id};
-  winston.log("Update: ", error);
   var update = {
     '$set': {
       title: error.title,

@@ -81,6 +81,29 @@ export var getErrorsFromDb = () => {
   }
 };
 
+export var getOneError = (id) => {
+  const token = localStorage.getItem('token')
+              ? '?token='+localStorage.getItem('token')
+              : '';
+  return function(dispatch) {
+    return new Promise((resolve) => {
+      axios({
+        method: 'GET',
+        url: '/errors/one/' + id + token,
+        headers: {"Content-Type":"application/json"}
+        })
+        .then(function(response) {
+            console.log("Data from DB: " + JSON.stringify(response.data));
+            dispatch({type:"ADD_OPEN_ERROR", error:response.data}); 
+            resolve(response.data);
+        })
+        .catch(function(err) {
+          console.log("Get from DB failed", err);      
+        })
+    })
+  }
+};
+
 export var updateError = (id, updates) => {
   const token = localStorage.getItem('token')
               ? '?token='+localStorage.getItem('token')

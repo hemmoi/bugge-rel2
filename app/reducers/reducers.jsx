@@ -15,6 +15,19 @@ export var userReducer = (state = {}, action) => {
   };
 };
 
+export var openErrorReducer = (state = [], action) => {
+  switch (action.type) {
+
+      case 'ADD_OPEN_ERROR':
+        return {
+          ...action.error
+        }
+      break;
+      default:
+        return state;
+  };
+};
+
 export var errorsReducer = (state = [], action) => {
   switch (action.type) {
       case 'ADD_ERROR':

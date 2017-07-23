@@ -9,9 +9,13 @@ export class ErrorDetails extends React.Component {
 
     constructor (props) {
         super(props);
-        this.findErrorById = this.findErrorById.bind(this);
+        this.state = {
+            formData: {},
+            loading: true
+        }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.showAlert = this.showAlert.bind(this);
+        this.loadFormData();
         this.alertOptions = {
             offset: 14,
             position: 'top left',
@@ -20,12 +24,27 @@ export class ErrorDetails extends React.Component {
             transition: 'scale'
         }
     }
-    
+
     showAlert = () => {
         var {message} = this.props.message;
         this.msg.show(message, {
         time: 2000,
         type: 'success',
+        })
+    }
+
+    loadFormData = () => {
+        var {dispatch} = this.props;
+        dispatch(actions.getOneError(this.props.params._id))
+        .then((data) => {
+            this.setState({
+                formData: data,
+                loading: false
+            });
+            console.log("state: " + JSON.stringify(this.state.formData));
+        })
+        .catch((err) => {
+            this.showAlert(err);
         })
     }
 
@@ -54,23 +73,21 @@ export class ErrorDetails extends React.Component {
         }   
     }
 
-    findErrorById(errors) {
-        return errors._id === this.props.params._id;
-    }
-
   render() {
-    var {errors} = this.props;
-    var formData = {
-        title: "",
-        description: "",
-        steps: "",
-        comments: "",
-        status: ""
-    };
 
-    if (this.props.params._id != 0) {
-        formData = errors.find(this.findErrorById);
-    }
+    var {openError} = this.props;
+    var formData = this.state.formData;
+
+    if (this.state.loading) {
+        return (
+        <div>
+             <Navbar/>
+             <div className="alert alert-info" role="alert">
+                 <strong>Loading data...</strong>
+             </div>
+        </div>
+        )
+    } else {
 
     return (
         <div>
@@ -155,13 +172,14 @@ export class ErrorDetails extends React.Component {
         </div>
 
     )
+    }
   }
 };
 
 export default connect(
   (state) => {
     return {
-        errors: state.errors,
+        openError: state.openError,
         message: state.message
     };
   }
