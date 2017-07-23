@@ -11,6 +11,7 @@ export var addUser = (user) => {
           resolve();
         })
         .catch(function(err) {
+          dispatch(updateMessage("Sign-up failed"));
           console.log("Sign-up failed", err);
         })
     })
@@ -56,6 +57,7 @@ export var addError = (error) => {
           resolve();
         })
         .catch(function(err) {
+          dispatch(updateMessage("Adding data to database failed. Please try again later"));
           console.log("Database addition failed", err);
         })
     })
@@ -123,6 +125,7 @@ export var updateError = (id, updates) => {
             resolve();
         })
         .catch(function(err) {
+          dispatch(updateMessage("Document could not be saved. Please try again later."));
           console.log("Error update to DB failed", err);      
         })
     })

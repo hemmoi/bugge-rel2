@@ -35,17 +35,21 @@ export class ErrorDetails extends React.Component {
 
     loadFormData = () => {
         var {dispatch} = this.props;
-        dispatch(actions.getOneError(this.props.params._id))
-        .then((data) => {
-            this.setState({
-                formData: data,
-                loading: false
+        if (this.props.params._id != 0) {
+            dispatch(actions.getOneError(this.props.params._id))
+            .then((data) => {
+                this.setState({
+                    formData: data,
+                    loading: false
+                });
+                console.log("state: " + JSON.stringify(this.state.formData));
             });
-            console.log("state: " + JSON.stringify(this.state.formData));
-        })
-        .catch((err) => {
-            this.showAlert(err);
-        })
+        } else {
+            this.state = {
+                formData: {},
+                loading: false
+            }
+        }
     }
 
     handleSubmit(e) {
