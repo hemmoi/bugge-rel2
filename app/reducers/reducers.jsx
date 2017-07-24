@@ -59,12 +59,12 @@ export var errorsReducer = (state = [], action) => {
   };
 };
 
-export var filtersReducer = (state = [], action) => {
+export var statusFiltersReducer = (state = [], action) => {
  switch (action.type) {
-      case 'UPDATE_FILTERS':
+      case 'UPDATE_STATUS_FILTERS':
         return {
           ...state.filters,
-          ...action.filters
+          ...action.statusFilters
         }          
       default:
         return state;

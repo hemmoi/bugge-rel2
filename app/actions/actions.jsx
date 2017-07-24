@@ -132,10 +132,10 @@ export var updateError = (id, updates) => {
   }
 };
 
-export var updateFilters = (filters) => {
+export var updateStatusFilter = (statusFilters) => {
   return {
-    type: 'UPDATE_FILTERS',
-    filters
+    type: 'UPDATE_STATUS_FILTERS',
+    statusFilters
   };
 };
 
