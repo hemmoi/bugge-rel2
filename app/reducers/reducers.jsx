@@ -71,6 +71,15 @@ export var statusFiltersReducer = (state = [], action) => {
   };
 };
 
+export var searchTitleReducer = (state = "", action) => {
+ switch (action.type) {
+      case 'UPDATE_TITLE_SEARCH':
+        return action.searchTitle;    
+      default:
+        return state;
+  };
+};
+
 export var messageReducer = (state = "", action) => {
  switch (action.type) {
       case 'UPDATE_MESSAGE':

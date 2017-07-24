@@ -139,6 +139,13 @@ export var updateStatusFilter = (statusFilters) => {
   };
 };
 
+export var searchTitleFilter = (searchTitle) => {
+  return {
+    type: 'UPDATE_TITLE_SEARCH',
+    searchTitle
+  };
+};
+
 export var updateMessage = (message) => {
   return {
     type: 'UPDATE_MESSAGE',

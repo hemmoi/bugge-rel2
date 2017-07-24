@@ -6,6 +6,7 @@ import {statusFiltersReducer} from 'reducers';
 import {messageReducer} from 'reducers';
 import {userReducer} from 'reducers';
 import {openErrorReducer} from 'reducers';
+import {searchTitleReducer} from 'reducers';
 
 export var configure = (initialState = {}) => {
   var reducer = redux.combineReducers({
@@ -13,7 +14,8 @@ export var configure = (initialState = {}) => {
     statusFilters: statusFiltersReducer,
     message: messageReducer,
     currentUser: userReducer,
-    openError: openErrorReducer
+    openError: openErrorReducer,
+    searchTitle: searchTitleReducer
   });
 
   var store = redux.createStore(reducer, redux.compose(

@@ -2,6 +2,7 @@ var React = require('react');
 var {connect} = require('react-redux');
 var actions = require('actions');
 import StatusFilter from "StatusFilter";
+import SearchTitle from "SearchTitle";
 
 export class Filters extends React.Component {
 
@@ -16,6 +17,7 @@ export class Filters extends React.Component {
       <div id="error-filter">
           <h2>Filter errors</h2>
           <StatusFilter/>
+          <SearchTitle/>
       </div>
     )
   }
