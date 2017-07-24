@@ -4,7 +4,6 @@ var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 var winston = require('winston');
 winston.level = 'debug';
-winston.log('info', 'Hello from user log files!');
 var User = require('../models/user');
 
 // ----->>>> ADD USER <<<< --------------
@@ -18,7 +17,7 @@ router.post('/', function(req, res) {
   
   User.create(user, function(err, user){
     if(err) {
-      throw err;
+      return res.status(500).json(err);
     }
     res.status(200).json(user);
   })

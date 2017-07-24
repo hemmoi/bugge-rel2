@@ -2,6 +2,7 @@ var React = require('react');
 var {connect} = require('react-redux');
 var {Link, IndexLink} = require('react-router');
 var actions = require('actions');
+import { hashHistory } from 'react-router';
 import AlertContainer from 'react-alert';
 import HelloNavbar from 'HelloNavbar';
 
@@ -20,11 +21,11 @@ export class SignUp extends React.Component {
         }
     }
 
-    showAlert = () => {
+    showAlert = (alertType) => {
         var {message} = this.props.message;
         this.msg.show(message, {
         time: 2000,
-        type: 'success',
+        type: alertType,
         })
     }
 
@@ -39,9 +40,21 @@ export class SignUp extends React.Component {
         };
                     
         dispatch(actions.addUser(submitData))
-            .then(() => {
-                this.showAlert();
-        });
+            .then((status) => {
+                console.log(status);
+                if(status=="success") {
+                    this.showAlert("success");
+                    setTimeout(function() {
+                       hashHistory.push("/signin"); 
+                    }, 2500);
+                } if (status == "failed") {
+                    this.showAlert("error");
+                }
+                this.refs.firstName.value ="";
+                this.refs.lastName.value = "";
+                this.refs.email.value = "";
+                this.refs.password.value = "";
+            })
     }
     
   render () {
@@ -50,6 +63,7 @@ export class SignUp extends React.Component {
             <HelloNavbar/>
             <div className="col-md-8 col-md-offset-2">
                 <form className="auth-form" onSubmit={this.handleSubmit}>
+                    <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
                     <div className="form-group">
                         <label htmlFor="firstName">First Name</label>
                         <input type="text" id="firstName" className="form-control" ref="firstName" required/>

@@ -11,7 +11,6 @@ export class Navbar extends React.Component {
   }
 
   logout() {
-    console.log("logout button");
     localStorage.clear();
   }
 

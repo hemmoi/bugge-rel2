@@ -8,11 +8,12 @@ export var addUser = (user) => {
         .then(function(response) {
           dispatch({type:"UPDATE_CURRENT_USER", user:response.data});
           dispatch(updateMessage("Sign-up was successful"));
-          resolve();
+          resolve("success");
         })
         .catch(function(err) {
           dispatch(updateMessage("Sign-up failed"));
           console.log("Sign-up failed", err);
+          resolve("failed");
         })
     })
   }
