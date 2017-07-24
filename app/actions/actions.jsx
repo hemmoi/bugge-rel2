@@ -26,7 +26,7 @@ export var getUser = (email) => {
         .then(function(response) {
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('firstName', response.data.userDetails.firstName);
-          resolve();
+          resolve("success");
         })
         .catch(function(err) {
           dispatch(updateMessage("Wrong credentials. Please try again."));
