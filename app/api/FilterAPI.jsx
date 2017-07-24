@@ -30,11 +30,23 @@ function statusFilter(items, status) {
     });    
 }
 
+function titleFilter(items, searchText) {
+    return items.filter((item) => {
+        if (item.title) {
+            var title = item.title.toLowerCase();
+            return searchText.length === 0 || title.indexOf(searchText.toLowerCase()) > -1;
+        } else {
+            return false;
+        }  
+    });
+}
+
 module.exports = {
-  filterItems: function(items, status) {
+  filterItems: function(items, status, searchText) {
     var filteredItems = items;
 
     filteredItems = statusFilter(filteredItems, status);
+    filteredItems = titleFilter(filteredItems, searchText)
 
     return filteredItems;
   }

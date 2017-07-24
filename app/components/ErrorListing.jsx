@@ -20,10 +20,9 @@ export class ErrorListing extends React.Component {
 
 
   render() {
-    var {errors} = this.props;
-    var {statusFilters} = this.props;
+    var {errors, statusFilters, searchTitle} = this.props;
 
-    var filteredErrors = FilterAPI.filterItems(errors, statusFilters);
+    var filteredErrors = FilterAPI.filterItems(errors, statusFilters, searchTitle);
 
     var renderErrors = () => {
         return filteredErrors.map((error) => {
@@ -57,7 +56,8 @@ export default connect(
   (state) => {
     return {
         errors: state.errors,
-        statusFilters: state.statusFilters
+        statusFilters: state.statusFilters,
+        searchTitle: state.searchTitle
     };
   }
 )(ErrorListing);
