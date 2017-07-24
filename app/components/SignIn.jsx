@@ -2,6 +2,7 @@ var React = require('react');
 var {connect} = require('react-redux');
 var {Link, IndexLink} = require('react-router');
 var actions = require('actions');
+import AlertContainer from 'react-alert';
 import HelloNavbar from 'HelloNavbar';
 import { hashHistory } from 'react-router';
 
@@ -9,7 +10,23 @@ export class SignIn extends React.Component {
 
     constructor (props) {
         super(props);
+        this.showAlert = this.showAlert.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.alertOptions = {
+            offset: 14,
+            position: 'top left',
+            theme: 'dark',
+            time: 5000,
+            transition: 'scale'
+        }
+    }
+
+    showAlert = (alertType) => {
+        var {message} = this.props.message;
+        this.msg.show(message, {
+        time: 2000,
+        type: alertType,
+        })
     }
 
     handleSubmit(e) {
@@ -22,8 +39,12 @@ export class SignIn extends React.Component {
         };
                     
         dispatch(actions.getUser(submitData))
-            .then(() => {
-                hashHistory.push("/buglist");
+            .then((status) => {
+                if(status=="success") {
+                    hashHistory.push("/buglist");
+                } else if (status == "failed"){
+                    this.showAlert("error");
+                }                
         });        
     }
     
@@ -33,6 +54,7 @@ export class SignIn extends React.Component {
             <HelloNavbar/>
             <div className="col-md-8 col-md-offset-2">
                 <form className="auth-form" onSubmit={this.handleSubmit}>
+                    <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
                     <div className="form-group">
                         <label htmlFor="email">Email</label>
                         <input type="email" id="email" className="form-control" ref="email" required/>

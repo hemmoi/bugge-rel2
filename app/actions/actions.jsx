@@ -29,6 +29,8 @@ export var getUser = (email) => {
           resolve();
         })
         .catch(function(err) {
+          dispatch(updateMessage("Wrong credentials. Please try again."));
+          resolve("failed");
           console.log("Get from database failed", err);      
         })
     })
@@ -55,10 +57,11 @@ export var addError = (error) => {
         .then(function(response) {
           dispatch({type:"ADD_ERROR", error:response.data});
           dispatch(updateMessage("New error report was created."));
-          resolve();
+          resolve("success");
         })
         .catch(function(err) {
           dispatch(updateMessage("Adding data to database failed. Please try again later"));
+          resolve("failed")
           console.log("Database addition failed", err);
         })
     })
@@ -96,7 +99,6 @@ export var getOneError = (id) => {
         headers: {"Content-Type":"application/json"}
         })
         .then(function(response) {
-            console.log("Data from DB: " + JSON.stringify(response.data));
             dispatch({type:"ADD_OPEN_ERROR", error:response.data}); 
             resolve(response.data);
         })
@@ -123,11 +125,12 @@ export var updateError = (id, updates) => {
         .then(function(response) {
             dispatch({type:"UPDATE_ERROR", id, updates:response.data}); 
             dispatch(updateMessage("Document was saved."));
-            resolve();
+            resolve("success");
         })
         .catch(function(err) {
           dispatch(updateMessage("Document could not be saved. Please try again later."));
-          console.log("Error update to DB failed", err);      
+          resolve("failed");
+          console.log("Error update failed", err);      
         })
     })
   }

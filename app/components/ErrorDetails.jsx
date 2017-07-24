@@ -25,11 +25,11 @@ export class ErrorDetails extends React.Component {
         }
     }
 
-    showAlert = () => {
+    showAlert = (alertType) => {
         var {message} = this.props.message;
         this.msg.show(message, {
         time: 2000,
-        type: 'success',
+        type: alertType,
         })
     }
 
@@ -42,7 +42,6 @@ export class ErrorDetails extends React.Component {
                     formData: data,
                     loading: false
                 });
-                console.log("state: " + JSON.stringify(this.state.formData));
             });
         } else {
             this.state = {
@@ -65,14 +64,22 @@ export class ErrorDetails extends React.Component {
 
         if (this.props.params._id != 0) {
             dispatch(actions.updateError(this.props.params._id, newFormData))
-            .then(() => {
-                this.showAlert();
+            .then((status) => {
+                if(status=="success") {
+                    this.showAlert("success");
+                } else if (status == "failed"){
+                    this.showAlert("error");
+                }
             });
 
         } else {
             dispatch(actions.addError(newFormData))
             .then(() => {
-                this.showAlert();
+                if(status=="success") {
+                    this.showAlert("success");
+                } else if (status == "failed"){
+                    this.showAlert("error");
+                }
             });
         }   
     }

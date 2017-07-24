@@ -41,13 +41,12 @@ export class SignUp extends React.Component {
                     
         dispatch(actions.addUser(submitData))
             .then((status) => {
-                console.log(status);
                 if(status=="success") {
                     this.showAlert("success");
                     setTimeout(function() {
                        hashHistory.push("/signin"); 
                     }, 2500);
-                } if (status == "failed") {
+                } else if (status == "failed") {
                     this.showAlert("error");
                 }
                 this.refs.firstName.value ="";
