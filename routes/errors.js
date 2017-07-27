@@ -77,7 +77,8 @@ router.put('/:_id', function(req, res, next) {
       description: error.description,
       steps: error.steps,
       comments: error.comments,
-      status: error.status
+      status: error.status,
+      assigned: error.assigned
       }
   }; 
 

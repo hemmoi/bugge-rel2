@@ -6,7 +6,8 @@ var errorsSchema = mongoose.Schema({
     description: String,
     steps: String,
     comments: String,
-    status: String
+    status: String,
+    assigned: String
 });
 
 var Errors = mongoose.model('Errors', errorsSchema);

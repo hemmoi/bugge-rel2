@@ -4,7 +4,6 @@ var actions = require('actions');
 import AlertContainer from 'react-alert';
 import thunk from 'redux-thunk';
 import Navbar from "Navbar";
-import AssignedTo from "AssignedTo";
 
 export class ErrorDetails extends React.Component {
 
@@ -16,14 +15,14 @@ export class ErrorDetails extends React.Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.showAlert = this.showAlert.bind(this);
-        this.loadFormData();
+        this.loadFormData(); 
         this.alertOptions = {
             offset: 14,
             position: 'top left',
             theme: 'dark',
             time: 5000,
             transition: 'scale'
-        }
+        };
     }
 
     showAlert = (alertType) => {
@@ -36,9 +35,17 @@ export class ErrorDetails extends React.Component {
 
     loadFormData = () => {
         var {dispatch} = this.props;
+
+        //-------Load data for Assigned to selector
+        if (this.props.allUsers.length == 0) {
+            dispatch(actions.getAllUsers());
+        }; 
+
+        // -------- Load data for form ------------
         if (this.props.params._id != 0) {
             dispatch(actions.getOneError(this.props.params._id))
             .then((data) => {
+                console.log("form data: " + JSON.stringify(data));
                 this.setState({
                     formData: data,
                     loading: false
@@ -49,7 +56,8 @@ export class ErrorDetails extends React.Component {
                 formData: {},
                 loading: false
             }
-        }
+        };
+
     }
 
     handleSubmit(e) {
@@ -60,7 +68,8 @@ export class ErrorDetails extends React.Component {
             description: this.refs.errorDescription.value,
             steps: this.refs.errorSteps.value,
             comments: this.refs.errorComment.value,
-            status: this.refs.errorStatus.value
+            status: this.refs.errorStatus.value,
+            assigned: this.refs.assignedTo.value
         }
 
         if (this.props.params._id != 0) {
@@ -87,8 +96,16 @@ export class ErrorDetails extends React.Component {
 
   render() {
 
-    var {openError} = this.props;
+    var {openError, allUsers} = this.props;
     var formData = this.state.formData;
+
+    var listUsers = () => {
+        return allUsers.map((user) => {
+            return (
+                <option key={user._id} value={user.email}>{user.firstName} {user.lastName}</option>
+            )
+        });
+    }
 
     if (this.state.loading) {
         return (
@@ -177,10 +194,23 @@ export class ErrorDetails extends React.Component {
                                     </select>
                                 </div> 
                             </div>
-                        </div>
-                    <AssignedTo/>
                     </div>
+                    
+                    <div id="assign-to-area">
+                        <div className="card card-inverse card-primary form-group-row">
+                            <div className="card-header">Assign to</div>
+                            <div className="card-text">
+                                <div className="form-group">
+                                    <select className="form-control" id="assign-to-selection" ref="assignedTo" defaultValue={formData.assigned}>
+                                    {listUsers()}
+                                    </select>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+            </div>
           </form>
         </div>
 
@@ -193,7 +223,8 @@ export default connect(
   (state) => {
     return {
         openError: state.openError,
-        message: state.message
+        message: state.message,
+        allUsers: state.allUsers
     };
   }
 )(ErrorDetails);
