@@ -4,6 +4,7 @@ var actions = require('actions');
 import AlertContainer from 'react-alert';
 import thunk from 'redux-thunk';
 import Navbar from "Navbar";
+import AssignedTo from "AssignedTo";
 
 export class ErrorDetails extends React.Component {
 
@@ -162,7 +163,7 @@ export class ErrorDetails extends React.Component {
 
                 </div>
 
-                <div id="status-area">
+                <div id="selections-area">
                     <div className="card card-inverse card-primary form-group-row">
                         <div className="card-header">Status</div>
                             <div className="card-text">
@@ -177,6 +178,7 @@ export class ErrorDetails extends React.Component {
                                 </div> 
                             </div>
                         </div>
+                    <AssignedTo/>
                     </div>
                 </div>
           </form>
