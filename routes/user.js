@@ -53,4 +53,22 @@ router.post('/signin', function(req, res) {
   })
 });
 
+// ----->>>>  GET ALL USERS <<<<---------
+router.get('/users', function(req, res, next) {
+
+  projection = {
+      password: false,
+      __v: false   
+  };
+
+  User.find({}, projection, function(err, users) {
+    if(err) {
+      throw err;
+    }
+    
+    winston.log('debug', users);
+    res.json(users);
+  })
+});
+
 module.exports = router;

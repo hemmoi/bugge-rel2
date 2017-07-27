@@ -7,7 +7,10 @@ export class AssignedTo extends React.Component {
 
     constructor (props) {
         super(props);
-        
+        var {dispatch} = this.props;
+        if (this.props.allUsers.length == 0) {
+            dispatch(actions.getAllUsers());
+        }                
     }
 
    
@@ -48,7 +51,7 @@ export class AssignedTo extends React.Component {
 export default connect(
   (state) => {
     return {
-
+        allUsers: state.allUsers
     };
   }
 )(AssignedTo);

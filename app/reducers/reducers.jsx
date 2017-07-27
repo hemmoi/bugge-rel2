@@ -15,6 +15,19 @@ export var userReducer = (state = {}, action) => {
   };
 };
 
+export var allUsersReducer = (state =[], action) => {
+  switch (action.type) {
+    case 'ADD_ALL_USERS':
+      return [
+        ...state,
+        ...action.users
+      ];
+    break;
+    default:
+      return state;
+  };
+};
+
 export var openErrorReducer = (state = [], action) => {
   switch (action.type) {
 
@@ -37,12 +50,13 @@ export var errorsReducer = (state = [], action) => {
             ...action.error
           }
         ];
-    break;
+      break;
       case 'ADD_ALL_ERRORS':
         return [
           ...state,
           ...action.errors
         ];
+      break;
       case 'UPDATE_ERROR':
         return state.map((error) => {
           if (error._id == action.id) {

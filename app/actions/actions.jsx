@@ -37,6 +37,22 @@ export var getUser = (email) => {
   }
 };
 
+export var getAllUsers = () => {
+  return function(dispatch) {
+    axios({
+        method: 'GET',
+        url: '/user/users',
+        headers: {"Content-Type":"application/json"}
+      })
+      .then(function(response) {
+        dispatch({type:"ADD_ALL_USERS", users:response.data})
+      })
+      .catch(function(err) {
+        console.log("Get users from database failed", err);      
+      })
+  }
+};
+
 export var getToken = () => {
   return localStorage.getItem('token');
 }
