@@ -8,7 +8,10 @@ winston.level = 'debug';
 
 // ----->>>> SEND EMAIL <<<< --------------
 router.post('/', function(req, res) {
-  var sendTo = req.body.sendTo1 + ", " + req.body.sendTo2 + ", " + req.body.sendTo3;
+  var sendTo = req.body.createdBy + ", " 
+                + req.body.currentUser + ", " 
+                + req.body.newAssignedTo + ", " 
+                + req.body.oldAssignedTo;
 
   var transporter = nodemailer.createTransport({
       host: "smtp-mail.outlook.com", // hostname
@@ -35,7 +38,7 @@ router.post('/', function(req, res) {
     if (err) {
       console.log(err);
     } else {
-      console.log('Email sent: ' + info.response);
+      // console.log('Email sent: ' + info.response);
     }
   }); 
 });

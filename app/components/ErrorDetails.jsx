@@ -35,11 +35,31 @@ export class ErrorDetails extends React.Component {
     }
 
     sendEmail = () => {
-        var {formData, dispatch} = this.props;
+        var {formData, dispatch, openError} = this.props;
+        var createdBy = openError.createdBy
+        var currentUser = "";
+        var newAssignedTo = "";
+        var oldAssignedTo = "";
+
+        // remove duplicate email addresses
+        if (localStorage.getItem('email') != createdBy) {
+            currentUser = localStorage.getItem('email');
+        }
+
+        if (this.refs.assignedTo.value != createdBy && 
+            this.refs.assignedTo.value != currentUser) 
+            { newAssignedTo = this.refs.assignedTo.value; }
+
+        if (this.state.formData.assignedTo != createdBy && 
+            this.state.formData.assignedTo != currentUser &&
+            this.state.formData.assignedTo != newAssignedTo) 
+            { oldAssignedTo = this.state.formData.assignedTo; }
+
         var email = {
-            sendTo1: localStorage.getItem('email'),
-            sendTo2: this.refs.assignedTo.value,
-            sendTo3: this.state.formData.assignedTo,
+            createdBy: createdBy,
+            currentUser: currentUser,
+            newAssignedTo: newAssignedTo,
+            oldAssignedTo: oldAssignedTo,
             title: this.refs.errorTitle.value
         }
         dispatch(actions.sendEmail(email));
@@ -57,7 +77,6 @@ export class ErrorDetails extends React.Component {
         if (this.props.params._id != 0) {
             dispatch(actions.getOneError(this.props.params._id))
             .then((data) => {
-                console.log("form data: " + JSON.stringify(data));
                 this.setState({
                     formData: data,
                     loading: false
@@ -79,14 +98,12 @@ export class ErrorDetails extends React.Component {
 
         if (this.props.params._id != 0) {
             createdBy = openError.createdBy;
-            console.log("params_d" + this.props.params._id);
         } else {
             createdBy = {
                 firstName: localStorage.getItem("firstName"),
                 lastName: localStorage.getItem("lastName"),
                 email: localStorage.getItem("email")
             };
-            console.log("created by: ", createdBy);
         }
         var newFormData = {
             title: this.refs.errorTitle.value,
@@ -98,7 +115,6 @@ export class ErrorDetails extends React.Component {
             createdBy: createdBy
         }
 
-        console.log("New form: " + JSON.stringify(newFormData));
 
         if (this.props.params._id != 0) {
             dispatch(actions.updateError(this.props.params._id, newFormData))
