@@ -193,5 +193,19 @@ export var updateMessage = (message) => {
   };
 };
 
+export var sendEmail = (email) => {
+  return function(dispatch) {
+    axios({
+        method: 'POST',
+        url: '/email',
+        data: email,
+        headers: {"Content-Type":"application/json"}
+      })
+      .catch(function(err) {
+        console.log("Email sending failed", err);      
+      })
+  }  
+}
+
 
 

@@ -15,6 +15,7 @@ export class ErrorDetails extends React.Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.showAlert = this.showAlert.bind(this);
+        this.sendEmail = this.sendEmail.bind(this);
         this.loadFormData(); 
         this.alertOptions = {
             offset: 14,
@@ -31,6 +32,17 @@ export class ErrorDetails extends React.Component {
         time: 2000,
         type: alertType,
         })
+    }
+
+    sendEmail = () => {
+        var {formData, dispatch} = this.props;
+        var email = {
+            sendTo1: localStorage.getItem('email'),
+            sendTo2: this.refs.assignedTo.value,
+            sendTo3: this.state.formData.assignedTo,
+            title: this.refs.errorTitle.value
+        }
+        dispatch(actions.sendEmail(email));
     }
 
     loadFormData = () => {
@@ -97,6 +109,7 @@ export class ErrorDetails extends React.Component {
                     this.showAlert("error");
                 }
             });
+            this.sendEmail();
 
         } else {
             dispatch(actions.addError(newFormData))
@@ -107,6 +120,7 @@ export class ErrorDetails extends React.Component {
                     this.showAlert("error");
                 }
             });
+            this.sendEmail();
         }   
     }
 
