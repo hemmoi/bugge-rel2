@@ -41,12 +41,38 @@ function titleFilter(items, searchText) {
     });
 }
 
+function createdByFilter(items, createdBy) {
+    return items.filter((item) => {
+        if (createdBy == "anyone" || !createdBy) {
+            return true;
+        } else if (item.createdBy.email == createdBy) {
+            return true;
+        } else {
+            return false;
+        }
+    });    
+}
+
+function assignedToFilter(items, assignedTo) {
+    return items.filter((item) => {
+        if (assignedTo == "anyone" || !assignedTo) {
+            return true;
+        } else if (item.assignedTo == assignedTo) {
+            return true;
+        } else {
+            return false;
+        }
+    });    
+}
+
 module.exports = {
-  filterItems: function(items, status, searchText) {
+  filterItems: function(items, status, searchText, createdBy, assignedTo) {
     var filteredItems = items;
 
     filteredItems = statusFilter(filteredItems, status);
-    filteredItems = titleFilter(filteredItems, searchText)
+    filteredItems = titleFilter(filteredItems, searchText);
+    filteredItems = createdByFilter(filteredItems, createdBy);
+    filteredItems = assignedToFilter(filteredItems, assignedTo);
 
     return filteredItems;
   }
