@@ -100,7 +100,7 @@ export class ErrorDetails extends React.Component {
 
         } else {
             dispatch(actions.addError(newFormData))
-            .then(() => {
+            .then((status) => {
                 if(status=="success") {
                     this.showAlert("success");
                 } else if (status == "failed"){

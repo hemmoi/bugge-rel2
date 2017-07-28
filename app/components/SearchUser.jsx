@@ -31,7 +31,6 @@ export class SearchUser extends React.Component {
             )
         });
     }
-      console.log("type: " +  this.props.type);
 
     if (this.props.type == "createdBy") {
       title = "Created by";
