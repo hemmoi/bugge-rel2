@@ -6,15 +6,18 @@ export class SearchUser extends React.Component {
 
   constructor (props) {
     super(props);
-    // this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
 
-  // handleChange() {
-  //   var {dispatch} = this.props;
-  //   var searchText = this.refs.searchText.value; 
-  //   dispatch(actions.searchTitleFilter(searchText));
-  // }
+  handleChange() {
+    var {type, dispatch} = this.props;
+    if (this.props.type == "createdBy") {
+      dispatch(actions.createdByFilter(this.refs.createdBy.value));
+    } else if (this.props.type == "assignedTo") {
+      dispatch(actions.assignedToFilter(this.refs.assignedTo.value));
+    }
+  }
 
   render() {
 
@@ -41,7 +44,7 @@ export class SearchUser extends React.Component {
         <div className="form-group">
           <label htmlFor="searchTitle"><h4>{title}</h4></label>
           <div className="form-group">
-            <select className="form-control" id="assign-to-selection" ref={this.props.type}>
+            <select className="form-control" id="assign-to-selection" ref={this.props.type} onChange={this.handleChange}>
               <option value="anyone">Anyone</option>
               {listUsers()}
             </select>

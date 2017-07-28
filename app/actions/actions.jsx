@@ -172,6 +172,20 @@ export var searchTitleFilter = (searchTitle) => {
   };
 };
 
+export var createdByFilter = (createdBy) => {
+  return {
+    type: 'UPDATE_CREATED_BY_SEARCH',
+    createdBy
+  };
+};
+
+export var assignedToFilter = (assignedTo) => {
+  return {
+    type: 'UPDATE_ASSIGNED_TO_SEARCH',
+    assignedTo
+  };
+};
+
 export var updateMessage = (message) => {
   return {
     type: 'UPDATE_MESSAGE',

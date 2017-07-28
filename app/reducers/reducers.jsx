@@ -94,6 +94,24 @@ export var searchTitleReducer = (state = "", action) => {
   };
 };
 
+export var createdByReducer = (state = "", action) => {
+ switch (action.type) {
+      case 'UPDATE_CREATED_BY_SEARCH':
+        return action.createdBy;    
+      default:
+        return state;
+  };
+};
+
+export var assignedToReducer = (state = "", action) => {
+ switch (action.type) {
+      case 'UPDATE_ASSIGNED_TO_SEARCH':
+        return action.assignedTo;    
+      default:
+        return state;
+  };
+};
+
 export var messageReducer = (state = "", action) => {
  switch (action.type) {
       case 'UPDATE_MESSAGE':

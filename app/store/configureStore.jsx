@@ -8,6 +8,8 @@ import {userReducer} from 'reducers';
 import {openErrorReducer} from 'reducers';
 import {searchTitleReducer} from 'reducers';
 import {allUsersReducer} from 'reducers';
+import {createdByReducer} from 'reducers';
+import {assignedToReducer} from 'reducers';
 
 export var configure = (initialState = {}) => {
   var reducer = redux.combineReducers({
@@ -17,6 +19,8 @@ export var configure = (initialState = {}) => {
     currentUser: userReducer,
     openError: openErrorReducer,
     searchTitle: searchTitleReducer,
+    createdBy: createdByReducer,
+    assignedTo: assignedToReducer,
     allUsers: allUsersReducer
   });
 
