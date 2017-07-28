@@ -24,8 +24,14 @@ export var getUser = (email) => {
     return new Promise((resolve) => {
       axios.post("/user/signin", email)
         .then(function(response) {
+          // console.log('token' + response.data.token);
+          // console.log('firstName' + response.data.userDetails.firstName);
+          // console.log('lastName' + response.data.userDetails.lastName);
+          // console.log('email' + response.data.userDetails.email);
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('firstName', response.data.userDetails.firstName);
+          localStorage.setItem('lastName', response.data.userDetails.lastName);
+          localStorage.setItem('email', response.data.userDetails.email);
           resolve("success");
         })
         .catch(function(err) {

@@ -62,15 +62,31 @@ export class ErrorDetails extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        var {dispatch} = this.props;
+        var createdBy = {};
+        var {dispatch, openError} = this.props;
+
+        if (this.props.params._id != 0) {
+            createdBy = openError.createdBy;
+            console.log("params_d" + this.props.params._id);
+        } else {
+            createdBy = {
+                firstName: localStorage.getItem("firstName"),
+                lastName: localStorage.getItem("lastName"),
+                email: localStorage.getItem("email")
+            };
+            console.log("created by: ", createdBy);
+        }
         var newFormData = {
             title: this.refs.errorTitle.value,
             description: this.refs.errorDescription.value,
             steps: this.refs.errorSteps.value,
             comments: this.refs.errorComment.value,
             status: this.refs.errorStatus.value,
-            assigned: this.refs.assignedTo.value
+            assignedTo: this.refs.assignedTo.value,
+            createdBy: createdBy
         }
+
+        console.log("New form: " + JSON.stringify(newFormData));
 
         if (this.props.params._id != 0) {
             dispatch(actions.updateError(this.props.params._id, newFormData))
@@ -201,7 +217,7 @@ export class ErrorDetails extends React.Component {
                             <div className="card-header">Assign to</div>
                             <div className="card-text">
                                 <div className="form-group">
-                                    <select className="form-control" id="assign-to-selection" ref="assignedTo" defaultValue={formData.assigned}>
+                                    <select className="form-control" id="assign-to-selection" ref="assignedTo" defaultValue={formData.assignedTo}>
                                     {listUsers()}
                                     </select>
                                 </div> 

@@ -7,7 +7,12 @@ var errorsSchema = mongoose.Schema({
     steps: String,
     comments: String,
     status: String,
-    assigned: String
+    assignedTo: String,
+    createdBy: {
+        firstName: String,
+        lastName: String,
+        email: String
+    }
 });
 
 var Errors = mongoose.model('Errors', errorsSchema);

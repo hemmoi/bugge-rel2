@@ -78,7 +78,8 @@ router.put('/:_id', function(req, res, next) {
       steps: error.steps,
       comments: error.comments,
       status: error.status,
-      assigned: error.assigned
+      assignedTo: error.assignedTo,
+      createdBy: error.createdBy
       }
   }; 
 
