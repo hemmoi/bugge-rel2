@@ -4,6 +4,8 @@ var actions = require('actions');
 import AlertContainer from 'react-alert';
 import thunk from 'redux-thunk';
 import Navbar from "Navbar";
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 
 export class ErrorDetails extends React.Component {
 
@@ -11,11 +13,13 @@ export class ErrorDetails extends React.Component {
         super(props);
         this.state = {
             formData: {},
-            loading: true
+            loading: true,
+            startDate: moment()
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.showAlert = this.showAlert.bind(this);
         this.sendEmail = this.sendEmail.bind(this);
+        this.handleDateChange = this.handleDateChange.bind(this);
         this.loadFormData(); 
         this.alertOptions = {
             offset: 14,
@@ -32,6 +36,12 @@ export class ErrorDetails extends React.Component {
         time: 2000,
         type: alertType,
         })
+    }
+
+    handleDateChange(date) {
+        this.setState({
+           startDate: date
+        });
     }
 
     sendEmail = () => {
@@ -227,7 +237,7 @@ export class ErrorDetails extends React.Component {
                 </div>
 
                 <div id="selections-area">
-                    <div className="card card-inverse card-primary form-group-row">
+                    <div className="card card-inverse card-info form-group-row">
                         <div className="card-header">Status</div>
                             <div className="card-text">
                                 <div className="form-group">
@@ -243,7 +253,7 @@ export class ErrorDetails extends React.Component {
                     </div>
                     
                     <div id="assign-to-area">
-                        <div className="card card-inverse card-primary form-group-row">
+                        <div className="card card-inverse card-info form-group-row">
                             <div className="card-header">Assign to</div>
                             <div className="card-text">
                                 <div className="form-group">
@@ -254,6 +264,20 @@ export class ErrorDetails extends React.Component {
                             </div>
                         </div>
                     </div>
+
+                    <div id="target-date-area">
+                        <div className="card-inverse card-info target-date">
+                            <div className="card-header">Target date</div>
+                            <div>
+                                <DatePicker
+                                    selected={this.state.startDate}
+                                    onChange={this.handleDateChange}
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+
 
                 </div>
             </div>
