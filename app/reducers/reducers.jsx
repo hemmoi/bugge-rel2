@@ -112,6 +112,18 @@ export var assignedToReducer = (state = "", action) => {
   };
 };
 
+export var targetDateReducer = (state = {}, action) => {
+ switch (action.type) {
+      case 'UPDATE_TARGET_DATE_SEARCH':
+        return {
+            startDate: action.startDate,
+            endDate: action.endDate
+        }          
+      default:
+        return state;
+  };
+};
+
 export var messageReducer = (state = "", action) => {
  switch (action.type) {
       case 'UPDATE_MESSAGE':

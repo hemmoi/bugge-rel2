@@ -272,6 +272,7 @@ export class ErrorDetails extends React.Component {
                             <div>
                                 {console.log("form-data: " + formData.targetDate)}
                                 <DatePicker
+                                    className="form-control"
                                     selected={moment(formData.targetDate)} 
                                     onChange={this.handleDateChange}
                                 />

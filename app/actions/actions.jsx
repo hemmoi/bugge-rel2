@@ -186,6 +186,14 @@ export var assignedToFilter = (assignedTo) => {
   };
 };
 
+export var targetDateFilter = (startDate, endDate) => {
+  return {
+    type: 'UPDATE_TARGET_DATE_SEARCH',
+    startDate,
+    endDate
+  };
+};
+
 export var updateMessage = (message) => {
   return {
     type: 'UPDATE_MESSAGE',

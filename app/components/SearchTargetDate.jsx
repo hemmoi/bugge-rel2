@@ -9,19 +9,29 @@ export class SearchTargetDate extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      startDate: "",
-      endDate: ""
+      startDate: null,
+      endDate: null
     };
     this.handleChangeStart = this.handleChangeStart.bind(this);
     this.handleChangeEnd = this.handleChangeEnd.bind(this);
+    this.dispatchChange = this.dispatchChange.bind(this);
   }
 
   handleChangeStart(date) {
     this.setState({startDate: date});
+    console.log("start: " + JSON.stringify(this.state));
+    this.dispatchChange(date, this.state.endDate);
   }
 
   handleChangeEnd(date) {
     this.setState({endDate: date});
+    console.log("end: " + JSON.stringify(this.state));
+    this.dispatchChange(this.state.startDate, date);
+  }
+
+  dispatchChange(startDate, endDate) {
+    var {dispatch} = this.props;
+    dispatch(actions.targetDateFilter(startDate, endDate));
   }
 
   render() {
@@ -62,7 +72,7 @@ export class SearchTargetDate extends React.Component {
 export default connect(
   (state) => {
     return {
-        searchTitle: state.searchTitle
+        searchTargetDate: state.searchTargetDate
     };
   }
 )(SearchTargetDate);
