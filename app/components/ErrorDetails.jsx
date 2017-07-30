@@ -14,7 +14,6 @@ export class ErrorDetails extends React.Component {
         this.state = {
             formData: {},
             loading: true,
-            startDate: moment()
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.showAlert = this.showAlert.bind(this);
@@ -39,8 +38,9 @@ export class ErrorDetails extends React.Component {
     }
 
     handleDateChange(date) {
+        console.log("date: " + date);
         this.setState({
-           startDate: date
+           formData: {targetDate: date}
         });
     }
 
@@ -94,7 +94,7 @@ export class ErrorDetails extends React.Component {
             });
         } else {
             this.state = {
-                formData: {},
+                formData: {targetDate: moment().add(1, 'weeks')},
                 loading: false
             }
         };
@@ -122,31 +122,32 @@ export class ErrorDetails extends React.Component {
             comments: this.refs.errorComment.value,
             status: this.refs.errorStatus.value,
             assignedTo: this.refs.assignedTo.value,
-            createdBy: createdBy
+            createdBy: createdBy,
+            targetDate: this.state.formData.targetDate
         }
-
+        console.log("newFormData: " + JSON.stringify(newFormData));
 
         if (this.props.params._id != 0) {
             dispatch(actions.updateError(this.props.params._id, newFormData))
             .then((status) => {
                 if(status=="success") {
                     this.showAlert("success");
+            // this.sendEmail();
                 } else if (status == "failed"){
                     this.showAlert("error");
                 }
             });
-            this.sendEmail();
 
         } else {
             dispatch(actions.addError(newFormData))
             .then((status) => {
                 if(status=="success") {
                     this.showAlert("success");
+            // this.sendEmail();
                 } else if (status == "failed"){
                     this.showAlert("error");
                 }
             });
-            this.sendEmail();
         }   
     }
 
@@ -269,8 +270,9 @@ export class ErrorDetails extends React.Component {
                         <div className="card-inverse card-info target-date">
                             <div className="card-header">Target date</div>
                             <div>
+                                {console.log("form-data: " + formData.targetDate)}
                                 <DatePicker
-                                    selected={this.state.startDate}
+                                    selected={moment(formData.targetDate)} 
                                     onChange={this.handleDateChange}
                                 />
                             </div>

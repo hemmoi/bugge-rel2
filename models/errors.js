@@ -12,7 +12,8 @@ var errorsSchema = mongoose.Schema({
         firstName: String,
         lastName: String,
         email: String
-    }
+    },
+    targetDate: String
 });
 
 var Errors = mongoose.model('Errors', errorsSchema);
