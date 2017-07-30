@@ -40,6 +40,7 @@ export class SearchTargetDate extends React.Component {
         <div className="form-group">
           <label htmlFor="searchTitle"><h4>Search by target date</h4></label>
           <DatePicker
+              dateFormat="DD/MM/YYYY"
               className="form-control"
               selected={this.state.startDate}
               selectsStart
@@ -51,6 +52,7 @@ export class SearchTargetDate extends React.Component {
           />
 
         <DatePicker
+            dateFormat="DD/MM/YYYY"
             className="form-control"
             selected={this.state.endDate}
             selectsEnd
