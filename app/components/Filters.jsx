@@ -10,7 +10,25 @@ export class Filters extends React.Component {
 
   constructor (props) {
     super(props);
+    this.clearFilters = this.clearFilters.bind(this);
+    this.clearFilters();
     this.loadFilterData();
+  }
+
+  clearFilters = () => {
+    var {dispatch} = this.props;
+    var statusFilters = {
+      new: false, 
+      ongoing: false, 
+      resolved: false, 
+      closed: false, 
+      rejected: false 
+    };
+    dispatch(actions.updateStatusFilter(statusFilters));
+    dispatch(actions.searchTitleFilter(""));
+    dispatch(actions.createdByFilter(""));
+    dispatch(actions.assignedToFilter(""));
+    dispatch(actions.targetDateFilter(null, null));    
   }
 
   loadFilterData = () => {
@@ -40,8 +58,11 @@ export class Filters extends React.Component {
 export default connect(
   (state) => {
     return {
-        filters: state.filters,
-        allUsers: state.allUsers
+        allUsers: state.allUsers,
+        // statusFilters: state.statusFilters,
+        // searchTitle: state.searchTitle,
+        // createdBy: state.createdBy,
+        // assignedTo
     };
   }
 )(Filters);
