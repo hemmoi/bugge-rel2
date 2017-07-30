@@ -1,4 +1,5 @@
 var $ = require('jquery');
+import moment from 'moment';
 
 function statusFilter(items, status) {
     return items.filter((item) => {
@@ -65,14 +66,40 @@ function assignedToFilter(items, assignedTo) {
     });    
 }
 
+function targetDateStartFilter(items, startDate){
+    return items.filter((item) => {
+        if (startDate == null) {
+            return true;
+        } else if (moment(item.targetDate).isAfter(startDate)) {
+            return true;
+        } else {
+            return false;
+        }
+    });    
+}
+
+function targetDateEndFilter(items, endDate){
+    return items.filter((item) => {
+        if (endDate == null) {
+            return true;
+        } else if (moment(item.targetDate).isBefore(endDate)) {
+            return true;
+        } else {
+            return false;
+        }
+    });    
+}
+
 module.exports = {
-  filterItems: function(items, status, searchText, createdBy, assignedTo) {
+  filterItems: function(items, status, searchText, createdBy, assignedTo, targetDate) {
     var filteredItems = items;
 
     filteredItems = statusFilter(filteredItems, status);
     filteredItems = titleFilter(filteredItems, searchText);
     filteredItems = createdByFilter(filteredItems, createdBy);
     filteredItems = assignedToFilter(filteredItems, assignedTo);
+    filteredItems = targetDateStartFilter(filteredItems, targetDate.startDate);
+    filteredItems = targetDateEndFilter(filteredItems, targetDate.endDate);
 
     return filteredItems;
   }

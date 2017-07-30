@@ -19,13 +19,11 @@ export class SearchTargetDate extends React.Component {
 
   handleChangeStart(date) {
     this.setState({startDate: date});
-    console.log("start: " + JSON.stringify(this.state));
     this.dispatchChange(date, this.state.endDate);
   }
 
   handleChangeEnd(date) {
     this.setState({endDate: date});
-    console.log("end: " + JSON.stringify(this.state));
     this.dispatchChange(this.state.startDate, date);
   }
 
