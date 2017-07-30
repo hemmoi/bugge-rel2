@@ -10,7 +10,7 @@
     display: flex
 }
 
-#input-area {
+.input-area {
     flex-basis: 80%;
     padding: 10px;
 }
@@ -25,9 +25,26 @@
 }
 
 .form-input {
-    width: 100%;
+    width: 99%;
+    border-radius: 4px;
+    padding: 5px;
+    margin:5px 20px 5px 5px;
 }
 
 .target-date {
     border-radius: 4px;
 }
+
+.comment-history {
+    padding-left: 5px;
+    margin-bottom: 10px;
+    min-height: 150px;
+    color: $comment-text;
+    background-color: $comment-history;
+}
+
+.button-comment {
+    margin: 0px 5px 10px 5px;
+}
+
+

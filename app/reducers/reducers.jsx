@@ -134,3 +134,17 @@ export var messageReducer = (state = "", action) => {
         return state;
   };
 };
+
+export var commentReducer = (state = [], action) => {
+ switch (action.type) {
+      case 'ADD_COMMENT':
+        return [
+          ...state,
+          {
+            ...action.comment
+          }
+        ]          
+      default:
+        return state;
+  };
+};

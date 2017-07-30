@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 import Navbar from "Navbar";
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import Comments from 'Comments';
 
 export class ErrorDetails extends React.Component {
 
@@ -118,7 +119,7 @@ export class ErrorDetails extends React.Component {
             title: this.refs.errorTitle.value,
             description: this.refs.errorDescription.value,
             steps: this.refs.errorSteps.value,
-            comments: this.refs.errorComment.value,
+            comments: "",
             status: this.refs.errorStatus.value,
             assignedTo: this.refs.assignedTo.value,
             createdBy: createdBy,
@@ -186,7 +187,7 @@ export class ErrorDetails extends React.Component {
             </div>
 
             <div id="error-form">
-                <div id="input-area">
+                <div className="input-area">
 
                     <div className="form-group">
                         <div className="card card-inverse card-primary form-group-row">
@@ -212,24 +213,6 @@ export class ErrorDetails extends React.Component {
                                 </textarea>
                             </div>
                         </div>
-
-                        <div className="card card-inverse card-primary form-group-row">
-                            <div className="card-header">Comment</div>
-                            <div className="card-text">
-                                <textarea ref="errorComment" defaultValue={formData.comments} name="description" rows="10" className="form-input">
-                                </textarea>              
-                                <div>
-                                    {/*<button className="btn btn-warning">Add comment</button>*/}
-                                </div>
-                            </div>
-                        </div>
-
-                        {/*<div className="card card-inverse card-primary form-group-row">
-                            <div className="card-header">Comment history</div>
-                            <div className="card-text">
-                                Panel content
-                            </div>
-                        </div>*/}
 
                     </div>
 
@@ -283,6 +266,7 @@ export class ErrorDetails extends React.Component {
                 </div>
             </div>
           </form>
+            <Comments className="input-area" />
         </div>
 
     )

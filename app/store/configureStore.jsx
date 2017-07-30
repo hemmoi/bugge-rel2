@@ -11,6 +11,7 @@ import {allUsersReducer} from 'reducers';
 import {createdByReducer} from 'reducers';
 import {assignedToReducer} from 'reducers';
 import {targetDateReducer} from 'reducers';
+import {commentReducer} from 'reducers';
 
 export var configure = (initialState = {}) => {
   var reducer = redux.combineReducers({
@@ -23,7 +24,8 @@ export var configure = (initialState = {}) => {
     createdBy: createdByReducer,
     assignedTo: assignedToReducer,
     allUsers: allUsersReducer,
-    searchTargetDate: targetDateReducer
+    searchTargetDate: targetDateReducer,
+    comments: commentReducer
   });
 
   var store = redux.createStore(reducer, redux.compose(

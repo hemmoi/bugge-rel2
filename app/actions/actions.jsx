@@ -201,6 +201,13 @@ export var updateMessage = (message) => {
   };
 };
 
+export var addComment = (comment) => {
+  return {
+    type: 'ADD_COMMENT',
+    comment
+  };
+};
+
 export var sendEmail = (email) => {
   return function(dispatch) {
     axios({
