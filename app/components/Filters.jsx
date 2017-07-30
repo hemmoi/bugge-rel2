@@ -4,6 +4,7 @@ var actions = require('actions');
 import StatusFilter from "StatusFilter";
 import SearchTitle from "SearchTitle";
 import SearchUser from "SearchUser";
+import SearchTargetDate from "SearchTargetDate";
 
 export class Filters extends React.Component {
 
@@ -28,6 +29,7 @@ export class Filters extends React.Component {
           <h2>Filter errors</h2>
           <StatusFilter/>
           <SearchTitle/>
+          <SearchTargetDate/>
           <SearchUser type="createdBy"/>
           <SearchUser type="assignedTo"/>
       </div>
