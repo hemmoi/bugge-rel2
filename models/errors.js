@@ -5,7 +5,6 @@ var errorsSchema = mongoose.Schema({
     title: String,
     description: String,
     steps: String,
-    comments: String,
     status: String,
     assignedTo: String,
     createdBy: {

@@ -202,11 +202,26 @@ export var updateMessage = (message) => {
 };
 
 export var addComment = (comment) => {
-  return {
-    type: 'ADD_COMMENT',
-    comment
+  const token = localStorage.getItem('token')
+                ? '?token='+localStorage.getItem('token')
+                : '';
+  return function(dispatch) {
+      axios({
+        method: 'POST',
+        url: '/comments'+token,
+        data: comment,
+        headers: {"Content-Type":"application/json"}
+
+      })
+      .then(function(response) {             
+        dispatch({ type: 'ADD_COMMENT', comment: response.data });
+      })
+      .catch(function(err) {
+          console.log("Database addition failed", err);
+      })
   };
 };
+
 
 export var sendEmail = (email) => {
   return function(dispatch) {

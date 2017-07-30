@@ -10,6 +10,7 @@ var indexRoute = require('./routes/index');
 var errorsRoute = require('./routes/errors');
 var userRoute = require('./routes/user');
 var emailRoute = require('./routes/email');
+var commentsRoute = require('./routes/comments');
 
 var app = express();
 // mongoose.connect('mongodb://localhost:27017/bugge');
@@ -43,6 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/errors', errorsRoute);
 app.use('/user', userRoute);
 app.use('/email', emailRoute);
+app.use('/comments', commentsRoute);
 app.use('/', indexRoute);
 
 // catch 404 and forward to error handler

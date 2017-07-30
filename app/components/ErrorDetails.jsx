@@ -104,7 +104,7 @@ export class ErrorDetails extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         var createdBy = {};
-        var {dispatch, openError} = this.props;
+        var {dispatch, openError, newComments} = this.props;
 
         if (this.props.params._id != 0) {
             createdBy = openError.createdBy;
@@ -119,7 +119,6 @@ export class ErrorDetails extends React.Component {
             title: this.refs.errorTitle.value,
             description: this.refs.errorDescription.value,
             steps: this.refs.errorSteps.value,
-            comments: "",
             status: this.refs.errorStatus.value,
             assignedTo: this.refs.assignedTo.value,
             createdBy: createdBy,
@@ -147,7 +146,8 @@ export class ErrorDetails extends React.Component {
                     this.showAlert("error");
                 }
             });
-        }   
+        }
+        
     }
 
   render() {
@@ -266,7 +266,7 @@ export class ErrorDetails extends React.Component {
                 </div>
             </div>
           </form>
-            <Comments className="input-area" />
+            <Comments className="input-area" reportId={this.props.params._id}/>
         </div>
 
     )
@@ -279,7 +279,8 @@ export default connect(
     return {
         openError: state.openError,
         message: state.message,
-        allUsers: state.allUsers
+        allUsers: state.allUsers,
+        newComments: state.newComments
     };
   }
 )(ErrorDetails);

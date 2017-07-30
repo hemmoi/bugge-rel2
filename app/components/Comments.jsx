@@ -14,12 +14,13 @@ export class Comments extends React.Component {
     handleAddComment = (e) => {
         e.preventDefault();
         var {dispatch} = this.props;
-        var newComment = {
+        var comment = {
+            reportId: this.props.reportId,
             time: moment().format('DD/MM/YYYY, h:mm'),
             created: localStorage.getItem('firstName') + " " + localStorage.getItem('lastName'),
             commentText:this.refs.comment.value
         }
-        dispatch(actions.addComment(newComment));
+        dispatch(actions.addComment(comment));
         this.refs.comment.value = "";
     }
 
@@ -30,11 +31,11 @@ export class Comments extends React.Component {
                 <p>There are no comments.</p>
             )
         } else {
-            return comments.map((comment, index) => {
+            return comments.map((newComment, index) => {
                 return (
                     <div key={index}>
-                            <div><strong> {comment.time} {comment.created }</strong> </div>
-                            {comment.commentText}
+                            <div><strong> {newComment.time} {newComment.created }</strong> </div>
+                            {newComment.commentText}
                     </div>
                 )
             });

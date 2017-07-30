@@ -143,7 +143,9 @@ export var commentReducer = (state = [], action) => {
           {
             ...action.comment
           }
-        ]          
+        ];
+      break;          
+
       default:
         return state;
   };
