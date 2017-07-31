@@ -78,8 +78,9 @@ export var addError = (error) => {
       })
         .then(function(response) {
           dispatch({type:"ADD_ERROR", error:response.data});
+          console.log("action reportid " + response.data._id);
           dispatch(updateMessage("New error report was created."));
-          resolve("success");
+          resolve({status: "success", reportId:response.data._id});
         })
         .catch(function(err) {
           dispatch(updateMessage("Adding data to database failed. Please try again later"));
@@ -244,6 +245,25 @@ export var getComments = (reportId) => {
       })
     };
 };
+
+export var updateReportId = (reportId) => {
+    const token = localStorage.getItem('token')
+                ? '?token='+localStorage.getItem('token')
+                : '';
+    return function(dispatch) {            
+        axios({
+          method: 'PUT',
+          url: '/comments/'+ reportId + token,
+          headers: {"Content-Type":"application/json"}
+        })
+        .then(function(response) {             
+          console.log("Comment ReportId successfully updated", response);
+          })
+        .catch(function(err) {
+            console.log("Comment ReportId update failed.", err);
+        })
+    };    
+}
 
 
 export var sendEmail = (email) => {

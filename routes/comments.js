@@ -43,5 +43,26 @@ router.get('/:reportId', function(req, res, next) {
   })
 });
 
+// ----->>>>  UPDATE reportId <<<<---------
+router.put('/:reportId', function(req, res, next) {
+  // var decoded = jwt.decode(req.query.token);
+  var query = {reportId: 0};
+  var update = {
+    '$set': {
+      reportId: req.params.reportId
+    }
+  };
+  var options = {
+    multi: true
+  };
+
+  Comments.update(query, update, options, function(err, status) {
+    if(err) {
+      throw err;
+    }
+    res.json(status);
+  })
+});
+
 
 module.exports = router;

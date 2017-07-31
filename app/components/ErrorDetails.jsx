@@ -139,13 +139,17 @@ export class ErrorDetails extends React.Component {
         } else {
             dispatch(actions.addError(newFormData))
             .then((status) => {
-                if(status=="success") {
+                if(status.status=="success") {
                     this.showAlert("success");
+                    // Update reportID field in comments
+                    console.log("details: " + status.reportId);
+                    dispatch(actions.updateReportId(status.reportId));
             // this.sendEmail();
-                } else if (status == "failed"){
+                } else if (status.status == "failed"){
                     this.showAlert("error");
                 }
             });
+            
         }
         
     }
