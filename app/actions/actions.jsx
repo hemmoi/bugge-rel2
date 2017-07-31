@@ -1,6 +1,8 @@
 import moment from 'moment';
 import axios from 'axios';
 
+// -----------USER ACTIONS --------------
+//
 export var addUser = (user) => {
   return function(dispatch) {
     return new Promise((resolve) => {
@@ -59,9 +61,7 @@ export var getAllUsers = () => {
   }
 };
 
-export var getToken = () => {
-  return localStorage.getItem('token');
-}
+// ------------- ERROR REPORT ACTIONS -------------------
 
 export var addError = (error) => {
   const token = localStorage.getItem('token')
@@ -78,6 +78,7 @@ export var addError = (error) => {
       })
         .then(function(response) {
           dispatch({type:"ADD_ERROR", error:response.data});
+          dispatch({type:"ADD_OPEN_ERROR", error:response.data});
           console.log("action reportid " + response.data._id);
           dispatch(updateMessage("New error report was created."));
           resolve({status: "success", reportId:response.data._id});
@@ -147,6 +148,7 @@ export var updateError = (id, updates) => {
         })
         .then(function(response) {
             dispatch({type:"UPDATE_ERROR", id, updates:response.data}); 
+            dispatch({type:"ADD_OPEN_ERROR", error:response.data});
             dispatch(updateMessage("Document was saved."));
             resolve("success");
         })
@@ -158,6 +160,15 @@ export var updateError = (id, updates) => {
     })
   }
 };
+
+export var clearOpenError = () => {
+  return {
+    type: 'CLEAR_OPEN_ERROR'
+  };
+};
+
+
+// ------------ FILTER ACTIONS --------------
 
 export var updateStatusFilter = (statusFilters) => {
   return {
@@ -195,12 +206,8 @@ export var targetDateFilter = (startDate, endDate) => {
   };
 };
 
-export var updateMessage = (message) => {
-  return {
-    type: 'UPDATE_MESSAGE',
-    message
-  };
-};
+
+// ------ COMMENTS ACTIONS ----------------- 
 
 export var addComment = (comment) => {
   const token = localStorage.getItem('token')
@@ -265,6 +272,20 @@ export var updateReportId = (reportId) => {
     };    
 }
 
+export var clearComments = () => {
+  return {
+    type: 'CLEAR_COMMENTS'
+  };
+};
+
+// ----------OTHER ACTIONS-----------------------------
+
+export var updateMessage = (message) => {
+  return {
+    type: 'UPDATE_MESSAGE',
+    message
+  };
+};
 
 export var sendEmail = (email) => {
   return function(dispatch) {
@@ -280,5 +301,8 @@ export var sendEmail = (email) => {
   }  
 }
 
+export var getToken = () => {
+  return localStorage.getItem('token');
+}
 
 

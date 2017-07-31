@@ -15,8 +15,10 @@ export class ErrorDetails extends React.Component {
         this.state = {
             formData: {},
             loading: true,
+            saved: false
         }
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleClose = this.handleClose.bind(this);
         this.showAlert = this.showAlert.bind(this);
         this.sendEmail = this.sendEmail.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
@@ -93,6 +95,7 @@ export class ErrorDetails extends React.Component {
                 });
             });
         } else {
+            dispatch(actions.clearComments());
             this.state = {
                 formData: {targetDate: moment().add(1, 'weeks')},
                 loading: false
@@ -125,8 +128,9 @@ export class ErrorDetails extends React.Component {
             targetDate: this.state.formData.targetDate
         }
 
-        if (this.props.params._id != 0) {
-            dispatch(actions.updateError(this.props.params._id, newFormData))
+        console.log("open error id: " + openError._id);
+        if (openError._id != 0 ) {
+            dispatch(actions.updateError(openError._id, newFormData))
             .then((status) => {
                 if(status=="success") {
                     this.showAlert("success");
@@ -152,6 +156,11 @@ export class ErrorDetails extends React.Component {
             
         }
         
+    }
+
+    handleClose() {
+        var {dispatch} = this.props;
+        dispatch(actions.clearOpenError());
     }
 
   render() {
@@ -185,7 +194,7 @@ export class ErrorDetails extends React.Component {
             <div className="input-group input-group-lg form-buttons">
                 <div>
                     <button type="submit" className="btn btn-success form-button">Save changes</button>
-                    <a href="#" className="btn btn-danger form-button">Close</a>
+                    <a href="#" className="btn btn-danger form-button" onClick={this.handleClose}>Close</a>
                     <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
                 </div>
             </div>

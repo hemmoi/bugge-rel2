@@ -28,13 +28,16 @@ export var allUsersReducer = (state =[], action) => {
   };
 };
 
-export var openErrorReducer = (state = [], action) => {
+export var openErrorReducer = (state = {_id:0}, action) => {
   switch (action.type) {
 
       case 'ADD_OPEN_ERROR':
         return {
           ...action.error
         }
+      break;
+      case 'CLEAR_OPEN_ERROR':
+        return {_id:0};
       break;
       default:
         return state;
@@ -148,7 +151,11 @@ export var commentReducer = (state = [], action) => {
       case 'ADD_ALL_COMMENTS':
         return [ 
           ...action.comments
-      ];          
+      ];
+      break;          
+      case 'CLEAR_COMMENTS':
+        return [];    
+      break;      
       default:
         return state;
   };
