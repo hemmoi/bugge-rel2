@@ -37,7 +37,7 @@ export var getUser = (email) => {
           resolve("success");
         })
         .catch(function(err) {
-          dispatch(updateMessage("Wrong credentials. Please try again."));
+          dispatch(updateMessage("Login failed."));
           resolve("failed");
           console.log("Get from database failed", err);      
         })
