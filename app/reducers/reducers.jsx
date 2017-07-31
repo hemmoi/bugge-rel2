@@ -144,8 +144,11 @@ export var commentReducer = (state = [], action) => {
             ...action.comment
           }
         ];
-      break;          
-
+      break;
+      case 'ADD_ALL_COMMENTS':
+        return [ 
+          ...action.comments
+      ];          
       default:
         return state;
   };

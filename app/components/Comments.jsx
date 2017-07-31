@@ -7,9 +7,36 @@ export class Comments extends React.Component {
 
     constructor (props) {
         super(props);
+        this.state = {
+            comments: {},
+            loading: true,
+        }
         this.handleAddComment = this.handleAddComment.bind(this);
         this.showComments = this.showComments.bind(this);
+        this.loadFormData(); 
     }
+
+    loadFormData = () => {
+        var {dispatch} = this.props;
+
+
+        // -------- Load comments for the open report ------------
+        if (this.props.reportId != 0) {
+            dispatch(actions.getComments(this.props.reportId))
+            .then((data) => {
+                this.setState({
+                    comments: data,
+                    loading: false
+                });
+            });
+        } else {
+            this.state = {
+                comments: {},
+                loading: false
+            }
+        };
+    }
+
 
     handleAddComment = (e) => {
         e.preventDefault();
@@ -26,7 +53,12 @@ export class Comments extends React.Component {
 
     showComments = () => {
         var {comments} = this.props;
-        if (!comments || comments.length == 0) {
+        if (this.state.loading) {
+            return (
+               <p>Loading comments...</p>
+            )
+        }
+        else if (!comments || comments.length == 0) {
             return (
                 <p>There are no comments.</p>
             )

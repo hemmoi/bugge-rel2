@@ -33,10 +33,9 @@ router.post('/', function(req, res, next) {
 });
 
 // ----->>>>  GET ALL COMMENTS FOR A REPORT <<<<---------
-router.get('/', function(req, res, next) {
+router.get('/:reportId', function(req, res, next) {
   // var decoded = jwt.decode(req.query.token);
-
-  Comments.find({ reportId: req.body.reportId }, function(err, comments) {
+  Comments.find({ reportId: req.params.reportId }, function(err, comments) {
     if(err) {
       throw err;
     }

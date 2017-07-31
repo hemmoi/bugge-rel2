@@ -222,6 +222,29 @@ export var addComment = (comment) => {
   };
 };
 
+export var getComments = (reportId) => {
+    const token = localStorage.getItem('token')
+                ? '?token='+localStorage.getItem('token')
+                : '';
+    return function(dispatch) {
+      return new Promise((resolve) => {                
+        axios({
+          method: 'GET',
+          url: '/comments/'+ reportId + token,
+          headers: {"Content-Type":"application/json"}
+        })
+        .then(function(response) {             
+            dispatch({ type: 'ADD_ALL_COMMENTS', comments: response.data });
+            resolve();
+          })
+        .catch(function(err) {
+            console.log("Getting comments from database failed.", err);
+            resolve();
+        })
+      })
+    };
+};
+
 
 export var sendEmail = (email) => {
   return function(dispatch) {
