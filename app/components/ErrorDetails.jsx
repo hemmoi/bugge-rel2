@@ -186,7 +186,7 @@ export class ErrorDetails extends React.Component {
                 </div>
             </div>
 
-            <div id="error-form">
+            <div className="form-block">
                 <div className="input-area">
 
                     <div className="form-group">
@@ -219,7 +219,7 @@ export class ErrorDetails extends React.Component {
                 </div>
 
                 <div id="selections-area">
-                    <div className="card card-inverse card-info form-group-row">
+                    <div className="card card-inverse card-primary form-group-row">
                         <div className="card-header">Status</div>
                             <div className="card-text">
                                 <div className="form-group">
@@ -235,7 +235,7 @@ export class ErrorDetails extends React.Component {
                     </div>
                     
                     <div id="assign-to-area">
-                        <div className="card card-inverse card-info form-group-row">
+                        <div className="card card-inverse card-primary form-group-row">
                             <div className="card-header">Assign to</div>
                             <div className="card-text">
                                 <div className="form-group">
@@ -248,7 +248,7 @@ export class ErrorDetails extends React.Component {
                     </div>
 
                     <div id="target-date-area">
-                        <div className="card-inverse card-info target-date">
+                        <div className="card-inverse card-primary target-date">
                             <div className="card-header">Target date</div>
                             <div>
                                 <DatePicker
@@ -266,7 +266,9 @@ export class ErrorDetails extends React.Component {
                 </div>
             </div>
           </form>
+          <div className="form-block">
             <Comments className="input-area" reportId={this.props.params._id}/>
+          </div>
         </div>
 
     )

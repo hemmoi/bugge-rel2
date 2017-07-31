@@ -6,12 +6,17 @@
     margin-right: 5px;
 }
 
-#error-form {
+.form-block {
     display: flex
 }
 
 .input-area {
     flex-basis: 80%;
+    padding: 10px;
+}
+
+#comments-area {
+    flex-basis:80%;
     padding: 10px;
 }
 
@@ -25,7 +30,7 @@
 }
 
 .form-input {
-    width: 99%;
+    width: 98%;
     border-radius: 4px;
     padding: 5px;
     margin:5px 20px 5px 5px;

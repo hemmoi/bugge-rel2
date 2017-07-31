@@ -43,7 +43,7 @@ export class Comments extends React.Component {
         var {dispatch} = this.props;
         var comment = {
             reportId: this.props.reportId,
-            time: moment().format('DD/MM/YYYY, h:mm'),
+            time: moment().format('DD/MM/YYYY, HH:mm'),
             created: localStorage.getItem('firstName') + " " + localStorage.getItem('lastName'),
             commentText:this.refs.comment.value
         }
