@@ -53,7 +53,8 @@ module.exports = {
     modulesDirectories: [
       'node_modules',
       './app/components',
-      './app/api'
+      './app/api',
+      './config'
     ],
     alias: {
       app: 'app',
