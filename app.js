@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var mongodb = require('./config/mongodb.json');
 
 var indexRoute = require('./routes/index');
 var errorsRoute = require('./routes/errors');
@@ -13,8 +14,8 @@ var emailRoute = require('./routes/email');
 var commentsRoute = require('./routes/comments');
 
 var app = express();
-// mongoose.connect('mongodb://localhost:27017/bugge');
-mongoose.connect('localhost:27017/bugge');
+mongoose.connect(mongodb.remote);
+//mongoose.connect(mongodb.local);
 
 // Winston for debugging
   var winston = require('winston');
