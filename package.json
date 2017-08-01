@@ -7,9 +7,6 @@
     "build": "webpack",
     "start": "node ./bin/www"
   },
-  "engines": {
-    "node":"6.11.1"
-  },
   "author": "Kimmo Halonen",
   "license": "MIT",
   "dependencies": {
