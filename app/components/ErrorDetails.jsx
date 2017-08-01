@@ -128,13 +128,12 @@ export class ErrorDetails extends React.Component {
             targetDate: this.state.formData.targetDate
         }
 
-        console.log("open error id: " + openError._id);
         if (openError._id != 0 ) {
             dispatch(actions.updateError(openError._id, newFormData))
             .then((status) => {
                 if(status=="success") {
                     this.showAlert("success");
-            // this.sendEmail();
+                    this.sendEmail();
                 } else if (status == "failed"){
                     this.showAlert("error");
                 }
@@ -146,9 +145,8 @@ export class ErrorDetails extends React.Component {
                 if(status.status=="success") {
                     this.showAlert("success");
                     // Update reportID field in comments
-                    console.log("details: " + status.reportId);
                     dispatch(actions.updateReportId(status.reportId));
-            // this.sendEmail();
+                    this.sendEmail();
                 } else if (status.status == "failed"){
                     this.showAlert("error");
                 }
