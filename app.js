@@ -21,11 +21,10 @@ try {
 }
 
 // Winston for debugging
-var winston = require('winston');
-winston.level = 'debug';
+// var winston = require('winston');
+// winston.level = 'debug';
 
 var app = express();
-winston.log("debug", process.env.DB_ADDRESS);
 mongoose.connect(process.env.DB_ADDRESS);
 
 

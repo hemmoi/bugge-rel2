@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
-var winston = require('winston');
-winston.level = 'debug';
+// var winston = require('winston');
+// winston.level = 'debug';
 var User = require('../models/user');
 
 // ----->>>> ADD USER <<<< --------------
@@ -66,7 +66,6 @@ router.get('/users', function(req, res, next) {
       throw err;
     }
     
-    winston.log('debug', users);
     res.json(users);
   })
 });

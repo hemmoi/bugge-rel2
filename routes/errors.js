@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var jwt = require('jsonwebtoken');
-var winston = require('winston');
-winston.level = 'debug';
+// var winston = require('winston');
+// winston.level = 'debug';
 
 
 var Errors = require('../models/errors.js');
