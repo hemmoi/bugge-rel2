@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var nodemailer = require('nodemailer'); 
 var smtpTransport = require('nodemailer-smtp-transport');
-var config = require('../config/email.json');
 // var winston = require('winston');
 // winston.level = 'debug';
 
