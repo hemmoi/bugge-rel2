@@ -5,7 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var mongodb = require('./config/mongodb.json');
 
 var indexRoute = require('./routes/index');
 var errorsRoute = require('./routes/errors');
@@ -13,18 +12,22 @@ var userRoute = require('./routes/user');
 var emailRoute = require('./routes/email');
 var commentsRoute = require('./routes/comments');
 
-var app = express();
-mongoose.connect(mongodb.remote);
-//mongoose.connect(mongodb.local);
+var envFile = require('node-env-file');
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+try {
+  envFile(path.join(__dirname, 'config/' + process.env.NODE_ENV + '.env'));
+} catch (e) {
+
+}
 
 // Winston for debugging
-  var winston = require('winston');
+var winston = require('winston');
+winston.level = 'debug';
 
-  // winston.log('info', 'Hello distributed log files!');
-  // winston.info('Hello again distributed logs');
+var app = express();
+winston.log("debug", process.env.DB_ADDRESS);
+mongoose.connect(process.env.DB_ADDRESS);
 
-  winston.level = 'debug';
-  // winston.log('debug', 'Now my debug messages are written to console!');
 
 // END Winston
 

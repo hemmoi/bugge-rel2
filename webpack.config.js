@@ -37,10 +37,9 @@ module.exports = {
     new webpack.DefinePlugin({
           'process.env': {
             NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-            API_KEY: JSON.stringify(process.env.API_KEY),
-            AUTH_DOMAIN: JSON.stringify(process.env.AUTH_DOMAIN),
-            DATABASE_URL: JSON.stringify(process.env.DATABASE_URL),
-            STORAGE_BUCKET: JSON.stringify(process.env.STORAGE_BUCKET)
+            EMAIL: JSON.stringify(process.env.EMAIL),
+            EMAIL_PASSWORD: JSON.stringify(process.env.EMAIL_PASSWORD),
+            DB_ADDRESS: JSON.stringify(process.env.DB_ADDRESS)
           }
         })
   ],
@@ -53,8 +52,7 @@ module.exports = {
     modulesDirectories: [
       'node_modules',
       './app/components',
-      './app/api',
-      './config'
+      './app/api'
     ],
     alias: {
       app: 'app',

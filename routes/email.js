@@ -21,8 +21,8 @@ router.post('/', function(req, res) {
         ciphers:'SSLv3'
       },
       auth: {
-          user: config.email,
-          pass: config.password
+          user: process.env.EMAIL,
+          pass: process.env.EMAIL_PASSWORD
       }
   });
 
