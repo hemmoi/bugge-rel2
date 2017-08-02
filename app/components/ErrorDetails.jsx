@@ -48,7 +48,7 @@ export class ErrorDetails extends React.Component {
 
     sendEmail = () => {
         var {formData, dispatch, openError} = this.props;
-        var createdBy = openError.createdBy
+        var createdBy = openError.createdBy.email;
         var currentUser = "";
         var newAssignedTo = "";
         var oldAssignedTo = "";

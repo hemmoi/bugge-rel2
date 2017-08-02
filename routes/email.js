@@ -2,11 +2,12 @@ var express = require('express');
 var router = express.Router();
 var nodemailer = require('nodemailer'); 
 var smtpTransport = require('nodemailer-smtp-transport');
-// var winston = require('winston');
-// winston.level = 'debug';
+var winston = require('winston');
+winston.level = 'debug';
 
 // ----->>>> SEND EMAIL <<<< --------------
 router.post('/', function(req, res) {
+
   var sendTo = req.body.createdBy + ", " 
                 + req.body.currentUser + ", " 
                 + req.body.newAssignedTo + ", " 
@@ -25,6 +26,7 @@ router.post('/', function(req, res) {
       }
   });
 
+
   var mailOptions = {
     from: config.email,
     to: sendTo,
@@ -33,10 +35,11 @@ router.post('/', function(req, res) {
     html: 'Error report: <b>' + req.body.title + '</b> was updated<br><br> Please log into Bugge to see the latest status.'
   };
 
+
   transporter.sendMail(mailOptions, function(err, info){
     if (err) {
       console.log(err);
-    } else {
+    } else {    
       // console.log('Email sent: ' + info.response);
     }
   }); 
