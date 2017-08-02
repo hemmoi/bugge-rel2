@@ -25,6 +25,7 @@
     "deep-freeze-strict": "^1.1.1",
     "expect": "^1.14.0",
     "express": "~4.15.2",
+    "hbs": "^4.0.1",
     "jade": "~1.11.0",
     "jquery": "^2.2.1",
     "jsonwebtoken": "^7.4.1",
