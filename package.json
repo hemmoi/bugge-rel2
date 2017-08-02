@@ -4,7 +4,6 @@
   "description": "Error management tool",
   "scripts": {
     "test": "SET NODE_ENV=test& karma start",
-    "build": "webpack",
     "start": "node ./bin/www"
   },
   "author": "Kimmo Halonen",
