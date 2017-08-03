@@ -31,7 +31,7 @@
     "mongoose": "^4.11.2",
     "morgan": "~1.8.1",
     "node-env-file": "^0.1.8",
-    "node-sass": "^3.4.2",
+    "node-sass": "^3.13.1",
     "node-uuid": "^1.4.7",
     "nodemailer": "^4.0.1",
     "nodemailer-smtp-transport": "^2.7.4",
