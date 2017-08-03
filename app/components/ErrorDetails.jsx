@@ -133,7 +133,7 @@ export class ErrorDetails extends React.Component {
             .then((status) => {
                 if(status=="success") {
                     this.showAlert("success");
-                    this.sendEmail();
+                    // this.sendEmail();
                 } else if (status == "failed"){
                     this.showAlert("error");
                 }
@@ -146,7 +146,7 @@ export class ErrorDetails extends React.Component {
                     this.showAlert("success");
                     // Update reportID field in comments
                     dispatch(actions.updateReportId(status.reportId));
-                    this.sendEmail();
+                    // this.sendEmail();
                 } else if (status.status == "failed"){
                     this.showAlert("error");
                 }
